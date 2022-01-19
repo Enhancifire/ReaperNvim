@@ -12,6 +12,9 @@ end
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+  -- WhichKey
+  use { "folke/which-key.nvim" }
+
   use '9mm/vim-closer'
 
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
@@ -29,20 +32,32 @@ return require('packer').startup(function()
 
 
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-  
-  
+
+
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
-  
+
   use {'tjdevries/colorbuddy.vim'}
-  
+
   -- Devicons
   use 'kyazdani42/nvim-web-devicons'
-  
+
   -- Intellisense
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'tjdevries/nlua.nvim'
+  use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'onsails/lspkind-nvim'
+
+  use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+  }
 
   -- Emmet
   use 'mattn/emmet-vim'
@@ -53,12 +68,16 @@ return require('packer').startup(function()
 
   -- Nerdtree
   use 'scrooloose/nerdtree'
+  use 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+  -- Nvim-Tree-Lua
+  use 'kyazdani42/nvim-tree.lua'
 
   -- Cheat Sheet
   use 'dbeniamine/cheat.sh-vim'
 
   -- Auto-pair
-  use 'jiangmiao/auto-pairs'
+  use 'windwp/nvim-autopairs'
 
   -- Snippets
   use 'honza/vim-snippets'
@@ -75,8 +94,9 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-compe'
 
   -- Airline
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  -- use 'vim-airline/vim-airline'
+  -- use 'vim-airline/vim-airline-themes'
+
 
   -- Startify
   use { 'mhinz/vim-startify' }
@@ -85,15 +105,14 @@ return require('packer').startup(function()
   use {'dracula/vim', as = 'dracula'}
   use { "ellisonleao/gruvbox.nvim" }
 
-  -- WhichKey
+
+
+  -- Lualine
   use {
-  "folke/which-key.nvim",
-  config = function()
-    require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use { 'windwp/nvim-ts-autotag' }
+  use { 'p00f/nvim-ts-rainbow' }
 end)
