@@ -30,7 +30,7 @@ vim.wo.cursorline = true
 vim.o.showtabline=2
 vim.o.updatetime=300
 vim.o.timeoutlen=500
-vim.o.clipboard= 'unnamedplus'
+-- vim.o.clipboard= 'unnamedplus'
 vim.wo.relativenumber = true
 vim.wo.nu = true
 vim.o.exrc = true
@@ -41,6 +41,7 @@ vim.o.smartcase = true
 vim.o.scrolloff=8
 vim.wo.scrolloff=8
 vim.wo.signcolumn='yes'
+vim.o.swapfile = false
 
 
 vim.cmd([[

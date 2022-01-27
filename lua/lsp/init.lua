@@ -1,4 +1,3 @@
-require('lsp.language_servers')
-require('lspsaga-config')
-require('lsp.tree-sitter-config')
-require('lsp.cmp')
+require('lsp/cmp-config')
+require('lsp/diagnostic_signs')
+require('lsp/language_servers')

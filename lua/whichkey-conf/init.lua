@@ -2,6 +2,17 @@ local wk = require('which-key')
 
 local wopts = { prefix = '<leader>' }
 
+local Terminal = require('toggleterm.terminal').Terminal
+local toggle_float = function ()
+  local float = Terminal:new({direction = "float"})
+  return float:toggle()
+end
+
+local toggle_lazygit = function ()
+  local lazygit = Terminal:new({direction = "float", cmd = "lazygit"})
+  return lazygit:toggle()
+end
+
 local mappings = {
 
   -- Quit
@@ -24,6 +35,7 @@ local mappings = {
     a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Actions"},
     a = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Actions Ranged"},
     s = {"<cmd>lua require('telescope.builtin').treesitter()<cr>", "Symbols"},
+    r = {":lua vim.lsp.buf.rename()<CR>", "Rename Varialbe"},
   },
 
   -- Files
@@ -78,6 +90,13 @@ local mappings = {
     c = {":close <CR>", "Close Window"},
     s = {":sp <CR>", "Split Horizontally"},
     v = {":vs <CR>", "Split Vertically"},
+  },
+
+  o = {
+    name = "open",
+    t = {":ToggleTerm<CR>", "Open Terminal"},
+    f = {toggle_float, "Floating Terminal"},
+    g = {toggle_lazygit, "Open Lazygit"},
   },
 
   -- NvimTree

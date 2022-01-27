@@ -1,0 +1,1 @@
+require'format'.setup {}

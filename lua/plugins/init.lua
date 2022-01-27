@@ -12,10 +12,30 @@ end
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+  -- Intellisense
+  use {
+    { 'tami5/lspsaga.nvim', branch = 'nvim6.0' },
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+    'nvim-lua/completion-nvim',
+    'tjdevries/nlua.nvim',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+    'onsails/lspkind-nvim',
+    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+  }
+
+  use { 'github/copilot.vim' }
+  -- Flutter Development
+  use { 'akinsho/flutter-tools.nvim' }
+
   -- WhichKey
   use { "folke/which-key.nvim" }
-
-  use '9mm/vim-closer'
 
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
@@ -30,9 +50,7 @@ return require('packer').startup(function()
 
   use 'tweekmonster/startuptime.vim'
 
-
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
-
 
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
 
@@ -41,35 +59,6 @@ return require('packer').startup(function()
   -- Devicons
   use 'kyazdani42/nvim-web-devicons'
 
-  -- Intellisense
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
-  use 'tjdevries/nlua.nvim'
-  use { 'tami5/lspsaga.nvim', branch = 'nvim6.0' }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
-  use 'onsails/lspkind-nvim'
-
-  use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
-  }
-
-  -- Emmet
-  use 'mattn/emmet-vim'
-
-  -- Themes
-  use 'joshdick/onedark.vim'
-  use 'morhetz/gruvbox'
-
-  -- Nerdtree
-  use 'scrooloose/nerdtree'
-  use 'tiagofumo/vim-nerdtree-syntax-highlight'
-
   -- Nvim-Tree-Lua
   use 'kyazdani42/nvim-tree.lua'
 
@@ -77,7 +66,7 @@ return require('packer').startup(function()
   use 'dbeniamine/cheat.sh-vim'
 
   -- Auto-pair
-  use 'windwp/nvim-autopairs'
+  -- use 'jiangmiao/auto-pairs'
 
   -- Snippets
   use 'honza/vim-snippets'
@@ -91,21 +80,12 @@ return require('packer').startup(function()
   use 'nvim-lua/popup.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzf-native.nvim'
-  use 'hrsh7th/nvim-compe'
-
-  -- Airline
-  -- use 'vim-airline/vim-airline'
-  -- use 'vim-airline/vim-airline-themes'
-
-
-  -- Startify
-  use { 'mhinz/vim-startify' }
 
   -- Themes
   use {'dracula/vim', as = 'dracula'}
   use { "ellisonleao/gruvbox.nvim" }
-
-
+  use 'joshdick/onedark.vim'
+  use 'tiagovla/tokyodark.nvim'
 
   -- Lualine
   use {
@@ -113,6 +93,47 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  -- Treesitter plugins
   use { 'windwp/nvim-ts-autotag' }
   use { 'p00f/nvim-ts-rainbow' }
+
+  -- Dashboard
+  use 'glepnir/dashboard-nvim'
+
+  -- Git Signs
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('gitsigns').setup{
+	current_line_blame = false,
+      }
+    end
+  }
+
+  -- Appearance--
+  -- Indent Guides
+  use "lukas-reineke/indent-blankline.nvim"
+  -- Autoformat
+  use { 'lukas-reineke/format.nvim' }
+
+  -- Embedded Terminal
+  use { 'akinsho/toggleterm.nvim' }
+
+  -- Comments
+  use { 'terrortylor/nvim-comment' ,
+  config = function ()
+    require('nvim_comment').setup({
+      comment_empty = false,
+      line_mapping = "<leader>cl",
+      operator_mapping = "<leader>cr"
+    })
+  end
+}
+
+  use { 'windwp/nvim-autopairs' }
+
+
 end)

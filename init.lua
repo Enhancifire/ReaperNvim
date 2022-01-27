@@ -1,32 +1,16 @@
--- Plugins
 require('plugins')
-
--- Statusline
-require('statline.init')
-
--- Some Essential Settings
-require('settings')
-
--- Setting Basic Keymaps
 require('keymaps')
-
--- Config for Telescope
-require('telescope-config')
-
--- Config for Startify / Start Screen
-require('start-vim')
-
--- Config for LSP
+require('settings')
 require('lsp')
-
--- Themes
+require('treesitter-config')
+require('telescope-config')
+require('statline.init')
 require('theme')
-
--- File Explorer Config
 require('nvim-tree-config')
-
--- Whichkey.nvim config for those nice popups
 require('whichkey-conf')
+require('dashboard-config')
+require('appearance')
+require('flutter')
+require('toggleterm-config')
+require('autopairs-config')
 
--- Autopairing
-require('autopairs')
