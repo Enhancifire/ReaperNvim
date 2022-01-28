@@ -30,9 +30,8 @@ return require('packer').startup(function()
     { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
   }
 
-  use { 'github/copilot.vim' }
   -- Flutter Development
-  use { 'akinsho/flutter-tools.nvim' }
+  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
 
   -- WhichKey
   use { "folke/which-key.nvim" }
@@ -66,20 +65,26 @@ return require('packer').startup(function()
   use 'dbeniamine/cheat.sh-vim'
 
   -- Auto-pair
-  -- use 'jiangmiao/auto-pairs'
+  --use 'jiangmiao/auto-pairs'
 
   -- Snippets
   use 'honza/vim-snippets'
   use 'sirver/ultisnips'
 
   -- CSS Color Preview
-  use 'ap/vim-css-color'
+  use { 'norcalli/nvim-colorizer.lua' }
 
   -- Telescope
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzf-native.nvim'
+  use { 'nvim-telescope/telescope-packer.nvim' }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
+  use {
+    "nvim-telescope/telescope-arecibo.nvim",
+    rocks = {"openssl", "lua-http-parser"}
+  }
 
   -- Themes
   use {'dracula/vim', as = 'dracula'}
@@ -130,10 +135,24 @@ return require('packer').startup(function()
       line_mapping = "<leader>cl",
       operator_mapping = "<leader>cr"
     })
-  end
-}
+    end
+  }
 
   use { 'windwp/nvim-autopairs' }
 
+  use { 'ahmedkhalf/project.nvim' }
+
+  use { 'rose-pine/neovim', as = 'rose-pine' }
+
+  use {"ellisonleao/glow.nvim"}
+
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
 
 end)

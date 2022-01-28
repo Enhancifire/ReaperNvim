@@ -62,7 +62,14 @@ local mappings = {
     c = {"<cmd>lua require('telescope.builtin').commands()<CR>", "Commands"},
     h = {"<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags"},
     t = {":Telescope<CR>", "Telescope"},
-    m = {"<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages"}
+    m = {"<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages"},
+    r = {
+      name = "Reload",
+      r = {":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR>", "Source configuration"},
+      R = {":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR> :PackerSync <CR>", "Source and install plugins"},
+    },
+    p = {":PackerSync <CR>", "Packer Sync"}
+
   },
 
   -- LSP
@@ -97,6 +104,7 @@ local mappings = {
     t = {":ToggleTerm<CR>", "Open Terminal"},
     f = {toggle_float, "Floating Terminal"},
     g = {toggle_lazygit, "Open Lazygit"},
+    p = {":Telescope projects<CR>", "Switch Projects"}
   },
 
   -- NvimTree

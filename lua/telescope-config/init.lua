@@ -1,5 +1,19 @@
 local actions = require('telescope.actions')
 require('telescope').setup {
+  extensions = {
+    file_browser = {
+      theme = "tokyodark",
+    },
+    packer = {
+      theme = "tokyodark",
+    },
+    arecibo = {
+      ["selected_engine"]   = 'google',
+      ["url_open_command"]  = 'xdg-open',
+      ["show_http_headers"] = false,
+      ["show_domain_icons"] = false,
+    },
+  },
   defaults = {
     layout_config = {
       width = 0.75,
@@ -48,4 +62,8 @@ require('telescope').setup {
     }
   }
 }
+
+require("telescope").load_extension "file_browser"
+--require("telescope").load_extension "packer"
+require("telescope").load_extension "arecibo"
 

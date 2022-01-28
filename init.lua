@@ -1,16 +1,23 @@
+-- Highest priority - Plugins
 require('plugins')
+
+-- Basic keymaps
 require('keymaps')
-require('settings')
-require('lsp')
-require('treesitter-config')
-require('telescope-config')
-require('statline.init')
-require('theme')
-require('nvim-tree-config')
 require('whichkey-conf')
-require('dashboard-config')
+
+-- Necessary settings
+require('settings')
+
+-- Everything related to appearance
 require('appearance')
-require('flutter')
-require('toggleterm-config')
-require('autopairs-config')
+
+-- Development related plugins
+require('Development')
+
+-- All hail the fuzzy finder king
+require('telescope-config')
+
+-- Miscellanous plugins
+require('neovide-config')
+require('nvim-tree-config')
 
