@@ -9,6 +9,9 @@
 <a href="https://github.com/Enhancifire/ReaperNvim/#Plugins">🔌 Plugins</a>
 </div>
 
+![Screenshot](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/dashboard.jpeg)
+![Screenshot](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/proj.jpeg)
+
 ## Introduction
 
 The goal of this configuration is to be able to work as fast as possible.
