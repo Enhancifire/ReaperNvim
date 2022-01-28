@@ -75,8 +75,8 @@ There are a lot of plugins used in this configuration. Some of the more importan
 ### File Navigation
 Uses Nvim-tree and Telescope for smooth file navigation and switching
 
-![File Navigation Image](https://github.com/Enhancifire/ReaperNvim/main/assets/fm.gif)
+![File Navigation Image](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/fm.gif)
 
 ### Terminal
 Uses ToggleTerm plugin for terminal emulation in editor
-![Terminal](https://github.com/Enhancifire/ReaperNvim/main/assets/ft.gif)
+![Terminal](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/ft.gif)
