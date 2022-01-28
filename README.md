@@ -9,7 +9,13 @@
 <a href="https://github.com/Enhancifire/ReaperNvim/#Plugins">🔌 Plugins</a>
 </div>
 
+
+<br>
+
 ![Screenshot](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/dashboard.jpeg)
+
+<br>
+
 ![Screenshot](https://github.com/Enhancifire/ReaperNvim/blob/main/assets/proj.jpeg)
 
 ## Introduction
