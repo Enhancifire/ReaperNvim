@@ -104,7 +104,8 @@ local mappings = {
     t = {":ToggleTerm<CR>", "Open Terminal"},
     f = {toggle_float, "Floating Terminal"},
     g = {toggle_lazygit, "Open Lazygit"},
-    p = {":Telescope projects<CR>", "Switch Projects"}
+    p = {":Telescope projects<CR>", "Switch Projects"},
+    b = {":enew<CR>", "Open new empty buffer"}
   },
 
   -- NvimTree

@@ -78,11 +78,13 @@ return require('packer').startup(function()
   use 'nvim-lua/popup.nvim'
   use {'nvim-telescope/telescope.nvim', config = "require('telescope-config')"}
   use {'nvim-telescope/telescope-fzf-native.nvim', after = "telescope.nvim"}
-  use { 'nvim-telescope/telescope-packer.nvim', after = "telescope.nvim" }
-  use { "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim" }
+  use { 'nvim-telescope/telescope-packer.nvim', after = "telescope.nvim", config = "require('telescope').load_extension 'packer'" }
+  use { "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim", config = "require('telescope').load_extension 'file_browser'" }
   use {
     "nvim-telescope/telescope-arecibo.nvim",
-    rocks = {"openssl", "lua-http-parser"}
+    rocks = {"openssl", "lua-http-parser"},
+    after = "telescope.nvim",
+    config = "require('telescope').load_extension 'arecibo'",
   }
 
   -- Themes
