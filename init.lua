@@ -8,16 +8,15 @@ require('whichkey-conf')
 -- Necessary settings
 require('settings')
 
--- Everything related to appearance
-require('appearance')
+-- Dashboard
+require('dashboard-config')
 
--- Development related plugins
-require('Development')
+-- Language servers
+require('lsp/diagnostic_signs')
+require('lsp/language_servers')
 
--- All hail the fuzzy finder king
-require('telescope-config')
 
 -- Miscellanous plugins
 require('neovide-config')
-require('nvim-tree-config')
 
+vim.cmd([[colorscheme tokyodark]])

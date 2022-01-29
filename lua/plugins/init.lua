@@ -19,22 +19,24 @@ return require('packer').startup(function()
     'williamboman/nvim-lsp-installer',
     'nvim-lua/completion-nvim',
     'tjdevries/nlua.nvim',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
+    {'hrsh7th/nvim-cmp', event = "InsertEnter", config = "require('lsp/cmp-config')"},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-buffer', after = "nvim-cmp"},
+    {'hrsh7th/cmp-path', after = "nvim-cmp"},
+    {'hrsh7th/cmp-cmdline', after = "nvim-cmp"},
+    {'hrsh7th/cmp-vsnip', after = "nvim-cmp"},
+    {'hrsh7th/vim-vsnip', after = "nvim-cmp"},
     'onsails/lspkind-nvim',
-    { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
   }
 
-  -- Flutter Development
-  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', event="BufWinEnter", config = "require('treesitter-config')"}
 
   -- WhichKey
   use { "folke/which-key.nvim" }
+
+  -- Flutter Development
+  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim', after = "telescope.nvim", config = "require('flutter')"}
+
 
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
@@ -59,28 +61,25 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'
 
   -- Nvim-Tree-Lua
-  use 'kyazdani42/nvim-tree.lua'
+  use {'kyazdani42/nvim-tree.lua', cmd = "NvimTreeToggle", config = "require('nvim-tree-config')"}
 
   -- Cheat Sheet
   use 'dbeniamine/cheat.sh-vim'
 
-  -- Auto-pair
-  --use 'jiangmiao/auto-pairs'
-
   -- Snippets
-  use 'honza/vim-snippets'
-  use 'sirver/ultisnips'
+  use {'honza/vim-snippets', event = "BufWinEnter"}
+  use {'sirver/ultisnips', event = "BufWinEnter"}
 
   -- CSS Color Preview
-  use { 'norcalli/nvim-colorizer.lua' }
+  use { 'norcalli/nvim-colorizer.lua', config = "require('colorizer-config')", event = "BufRead" }
 
   -- Telescope
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzf-native.nvim'
-  use { 'nvim-telescope/telescope-packer.nvim' }
-  use { "nvim-telescope/telescope-file-browser.nvim" }
+  use {'nvim-telescope/telescope.nvim', config = "require('telescope-config')"}
+  use {'nvim-telescope/telescope-fzf-native.nvim', after = "telescope.nvim"}
+  use { 'nvim-telescope/telescope-packer.nvim', after = "telescope.nvim" }
+  use { "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim" }
   use {
     "nvim-telescope/telescope-arecibo.nvim",
     rocks = {"openssl", "lua-http-parser"}
@@ -89,18 +88,20 @@ return require('packer').startup(function()
   -- Themes
   use {'dracula/vim', as = 'dracula'}
   use { "ellisonleao/gruvbox.nvim" }
+  use { 'rose-pine/neovim', as = 'rose-pine' }
   use 'joshdick/onedark.vim'
   use 'tiagovla/tokyodark.nvim'
 
   -- Lualine
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = "require('statline.init')"
   }
 
   -- Treesitter plugins
-  use { 'windwp/nvim-ts-autotag' }
-  use { 'p00f/nvim-ts-rainbow' }
+  use { 'windwp/nvim-ts-autotag', after = "nvim-treesitter" }
+  use { 'p00f/nvim-ts-rainbow', after = "nvim-treesitter" }
 
   -- Dashboard
   use 'glepnir/dashboard-nvim'
@@ -120,12 +121,13 @@ return require('packer').startup(function()
 
   -- Appearance--
   -- Indent Guides
-  use "lukas-reineke/indent-blankline.nvim"
+  use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('indentation')"}
+
   -- Autoformat
-  use { 'lukas-reineke/format.nvim' }
+  use { 'lukas-reineke/format.nvim', cmd = "Format", config = "require('autoformat-config')" }
 
   -- Embedded Terminal
-  use { 'akinsho/toggleterm.nvim' }
+  use { 'akinsho/toggleterm.nvim', config = "require('toggleterm-config')"}
 
   -- Comments
   use { 'terrortylor/nvim-comment' ,
@@ -138,11 +140,11 @@ return require('packer').startup(function()
     end
   }
 
-  use { 'windwp/nvim-autopairs' }
+  -- Autopairs
+  use { 'windwp/nvim-autopairs', config = "require('autopairs-config')", after = "nvim-cmp" }
 
-  use { 'ahmedkhalf/project.nvim' }
-
-  use { 'rose-pine/neovim', as = 'rose-pine' }
+-- For managing projects
+  use { 'ahmedkhalf/project.nvim', after = "telescope.nvim", config = "require('project-config')" }
 
   use {"ellisonleao/glow.nvim"}
 
