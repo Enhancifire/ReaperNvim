@@ -126,7 +126,7 @@ return require('packer').startup(function()
   use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('indentation')"}
 
   -- Autoformat
-  use { 'lukas-reineke/format.nvim', cmd = "Format", config = "require('autoformat-config')" }
+  use { 'jose-elias-alvarez/null-ls.nvim', cmd = "Format", config = "require('autoformat-config')" }
 
   -- Embedded Terminal
   use { 'akinsho/toggleterm.nvim', config = "require('toggleterm-config')"}
@@ -158,5 +158,7 @@ return require('packer').startup(function()
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   }
+
+  use { 'github/copilot.vim' }
 
 end)
