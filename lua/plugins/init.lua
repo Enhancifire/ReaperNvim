@@ -161,4 +161,7 @@ return require('packer').startup(function()
 
   -- use { 'github/copilot.vim' }
 
+  use { 'radenling/vim-dispatch-neovim' }
+
+
 end)
