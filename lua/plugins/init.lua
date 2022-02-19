@@ -163,5 +163,11 @@ return require('packer').startup(function()
 
   use { 'radenling/vim-dispatch-neovim' }
 
+  -- Flask SNippets
+  use { 'cstrap/flask-snippets' }
+
+  -- Yode for focused code editing
+  use { 'hoschi/yode-nvim', config = "require('yode-nvim').setup({})" }
+
 
 end)
