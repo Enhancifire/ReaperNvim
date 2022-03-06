@@ -20,6 +20,7 @@ return require('packer').startup(function()
     'nvim-lua/completion-nvim',
     'tjdevries/nlua.nvim',
     {'hrsh7th/nvim-cmp', event = "InsertEnter", config = "require('lsp/cmp-config')"},
+
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/cmp-buffer', after = "nvim-cmp"},
     {'hrsh7th/cmp-path', after = "nvim-cmp"},
@@ -28,8 +29,9 @@ return require('packer').startup(function()
     {'hrsh7th/vim-vsnip', after = "nvim-cmp"},
     'onsails/lspkind-nvim',
   }
+  use { 'tzachar/cmp-tabnine', after = "nvim-cmp", config = "require('tabnine')", run='./install.sh' }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', event="BufWinEnter", config = "require('treesitter-config')"}
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('treesitter-config')"}
 
   -- WhichKey
   use { "folke/which-key.nvim" }
@@ -169,5 +171,10 @@ return require('packer').startup(function()
   -- Yode for focused code editing
   use { 'hoschi/yode-nvim', config = "require('yode-nvim').setup({})" }
 
+  use { 'untitled-ai/jupyter_ascending.vim'}
+
+  use { 'vimwiki/vimwiki' }
+
+  use { 'wakatime/vim-wakatime' }
 
 end)

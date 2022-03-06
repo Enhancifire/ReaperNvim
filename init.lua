@@ -18,5 +18,10 @@ require('lsp/language_servers')
 -- Miscellanous plugins
 require('neovide-config')
 
+require('markdown-view')
+
+require('wiki')
+
+vim.g.tokyodark_transparent_background = true
 vim.cmd([[colorscheme tokyodark]])
 

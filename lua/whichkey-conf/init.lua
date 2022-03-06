@@ -13,6 +13,30 @@ local toggle_lazygit = function ()
   return lazygit:toggle()
 end
 
+local pythonTerm = function ()
+  local pyt = Terminal:new({direction = "vertical", cmd = "python"})
+  return pyt:toggle()
+end
+
+local btop = function ()
+  local ht = Terminal:new({direction = "float", cmd = "btop --utf-force"})
+  return ht:toggle()
+end
+
+local music = function()
+  local ncp = Terminal:new({direction = "float", cmd = "ncmpcpp"})
+  return ncp:toggle()
+end
+
+local transp = function()
+  if (vim.g.tokyodark_transparent_background == true) then
+    vim.g.tokyodark_transparent_background = false
+  else
+    vim.g.tokyodark_transparent_background = true
+  end
+end
+
+
 local mappings = {
 
   -- Quit
@@ -33,7 +57,7 @@ local mappings = {
   c = {
     name = "Code",
     a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Actions"},
-    a = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Actions Ranged"},
+    aa = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Actions Ranged"},
     s = {"<cmd>lua require('telescope.builtin').treesitter()<cr>", "Symbols"},
     r = {":lua vim.lsp.buf.rename()<CR>", "Rename Varialbe"},
   },
@@ -99,15 +123,41 @@ local mappings = {
     v = {":vs <CR>", "Split Vertically"},
   },
 
+  -- Opening Various Stuff
   o = {
     name = "open",
+    b = {":enew<CR>", "Open new empty buffer"},
+    w = {"<Plug>VimwikiIndex<CR>", "Open Wiki"}
+  },
+
+  -- Project Management
+  p = {
+    name = "Project",
+    p = {":Telescope projects<CR>", "Switch Projects"},
+  },
+
+  -- Toggle
+  t = {
+    name = "Toggle",
+    m = {music, "Toggle Music Player"},
     t = {":ToggleTerm<CR>", "Open Terminal"},
     f = {toggle_float, "Floating Terminal"},
     g = {toggle_lazygit, "Open Lazygit"},
-    p = {":Telescope projects<CR>", "Switch Projects"},
-    b = {":enew<CR>", "Open new empty buffer"}
+    s = {btop, "Open System Monitor"},
+    o = {transp, "Toggle Opacity"}
   },
 
+  j = {
+    name = "Jupyter",
+    e = {"<Packer>JupyterExecute<cr>", "Execute Code"},
+    n = {"o# %%<CR>", "New Code Cell"},
+  },
+  -- Context Specific
+  m = {
+    name = "Wiki",
+    h = {":Vimwiki2HTML", "Open current file as html"},
+    n = {":VimwikiGoto", "Goto or create new page"},
+  },
   -- NvimTree
   n = {":NvimTreeToggle<CR>", "Toggle NvimTree"},
 }
