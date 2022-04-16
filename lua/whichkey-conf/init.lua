@@ -1,6 +1,17 @@
 local wk = require('which-key')
 
-local wopts = { prefix = '<leader>' }
+local wopts = {
+  prefix = '<leader>',
+  silent = true,
+  noremap = true
+}
+
+local vopts = {
+  prefix = "<leader>",
+  mode = "v",
+  silent = true,
+  noremap = true
+}
 
 local Terminal = require('toggleterm.terminal').Terminal
 local toggle_float = function ()
@@ -14,7 +25,7 @@ local toggle_lazygit = function ()
 end
 
 local pythonTerm = function ()
-  local pyt = Terminal:new({direction = "vertical", cmd = "python"})
+  local pyt = Terminal:new({direction = "vertical", cmd = "bpython", size = 30})
   return pyt:toggle()
 end
 
@@ -65,8 +76,8 @@ local mappings = {
   -- Files
   f = {
     name = "Files",
-    f = {"<cmd>lua require('telescope.builtin').find_files()<cr>", "Find Files"},
-    g = {"<cmd>lua require('telescope.builtin').live_grep()<cr>", "Live Grep"},
+    f = {":Files<CR>", "Find Files"},
+    g = {":Rg<CR>", "Live Grep"},
 
   },
 
@@ -144,22 +155,39 @@ local mappings = {
     f = {toggle_float, "Floating Terminal"},
     g = {toggle_lazygit, "Open Lazygit"},
     s = {btop, "Open System Monitor"},
-    o = {transp, "Toggle Opacity"}
+    o = {transp, "Toggle Opacity"},
+    p = {pythonTerm, "Open Python Terminal"}
   },
 
+  -- Jupyter Bindings
   j = {
     name = "Jupyter",
-    e = {"<Packer>JupyterExecute<cr>", "Execute Code"},
+    i = {":MagmaInit python3<CR>", "Initialize Python environment"},
     n = {"o# %%<CR>", "New Code Cell"},
+    l = {":MagmaEvaluateLine<CR>", "Evaluate Line"},
+    o = {":MagmaShowOutput<CR>", "Show Output"},
+    r = {":MagmaReevaluateCell<CR>", "Reevaluate Cell"},
+    p = {":MagmaEvaluateOperator<CR>", "Magma Evaluate Operator"},
+    d = {":MagmaDelete<CR>", "Magma Delete"},
+    e = {":MagmaInit ir<CR>", "Initialize R Environment"}
   },
+
   -- Context Specific
   m = {
     name = "Wiki",
     h = {":Vimwiki2HTML", "Open current file as html"},
     n = {":VimwikiGoto", "Goto or create new page"},
   },
+
   -- NvimTree
   n = {":NvimTreeToggle<CR>", "Toggle NvimTree"},
+
 }
 
 wk.register(mappings, wopts)
+wk.register({
+  j = {
+    name = "Jupyter",
+    v = {":<C-u>MagmaEvaluateVisual<CR>", "Evaluate Visual"},
+  }
+}, vopts)

@@ -73,7 +73,7 @@ return require('packer').startup(function()
   use {'sirver/ultisnips', event = "BufWinEnter"}
 
   -- CSS Color Preview
-  use { 'norcalli/nvim-colorizer.lua', config = "require('colorizer-config')", event = "BufRead" }
+  use { 'norcalli/nvim-colorizer.lua', config = "require('colorizer').setup{}", event = "BufRead" }
 
   -- Telescope
   use 'nvim-lua/plenary.nvim'
@@ -98,9 +98,9 @@ return require('packer').startup(function()
 
   -- Lualine
   use {
-    'nvim-lualine/lualine.nvim',
+    'tamton-aquib/staline.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = "require('statline.init')"
+    -- config = "require('statline-config')"
   }
 
   -- Treesitter plugins
@@ -176,5 +176,9 @@ return require('packer').startup(function()
   use { 'vimwiki/vimwiki' }
 
   use { 'wakatime/vim-wakatime' }
+
+  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
+
+  use { 'junegunn/fzf.vim' }
 
 end)

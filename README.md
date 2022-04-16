@@ -51,6 +51,7 @@ Make sure to have git installed
 ### On Windows
 
 From your user directory, run this command
+
 ```
 git clone https://github.com/Enhancifire/ReaperNvim.git AppData\Local\nvim
 ```
