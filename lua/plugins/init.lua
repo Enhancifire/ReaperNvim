@@ -175,6 +175,6 @@ return require('packer').startup(function()
 
   use { 'vimwiki/vimwiki' }
 
-  use { 'wakatime/vim-wakatime' }
+  -- use { 'wakatime/vim-wakatime' }
 
 end)
