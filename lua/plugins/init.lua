@@ -181,4 +181,12 @@ return require('packer').startup(function()
 
   use { 'junegunn/fzf.vim' }
 
+  use { 'folke/lsp-colors.nvim' }
+
+  use {
+    "folke/trouble.nvim",
+  }
+
+  use { 'sotte/presenting.vim' }
+
 end)

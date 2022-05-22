@@ -12,16 +12,16 @@ require('settings')
 require('dashboard-config')
 
 -- Language servers
-require('lsp/diagnostic_signs')
-require('lsp/language_servers')
+require('lsp.diagnostic_signs')
+require('lsp.language_servers')
+require('lsp.color-config')
+require('trouble-config')
 
 -- Miscellanous plugins
-require('neovide-config')
-
 require('markdown-view')
 
 require('wiki')
-require('statline-config')
 
--- vim.g.tokyodark_transparent_background = false
-vim.cmd([[colorscheme tokyodark]])
+require('theme')
+
+require('functions')
