@@ -1,12 +1,19 @@
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_respect_buf_cwd = 1
-
 require'nvim-tree'.setup {
+  respect_buf_cwd = false,
   update_focused_file = {
     enable = true,
   },
-  auto_open = 1,
-  auto_close = 1,
+  renderer = {
+    indent_markers = {
+      enable = true,
+      icons = {
+	corner = "└ ",
+	edge = "│ ",
+	item = "│ ",
+	none = "  ",
+      },
+    },
+  },
   open_on_setup = true,
   update_to_buf_dir = {
     enable = true,
@@ -26,7 +33,6 @@ require'nvim-tree'.setup {
     }
   },
   hijack_netrw = true,
-  disable_newrw = true,
   view = {
     width = 30,
     height = 3,
