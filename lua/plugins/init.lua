@@ -29,7 +29,7 @@ return require('packer').startup(function()
     {'hrsh7th/vim-vsnip', after = "nvim-cmp"},
     'onsails/lspkind-nvim',
   }
-  use { 'tzachar/cmp-tabnine', after = "nvim-cmp", config = "require('tabnine')", run='./install.sh' }
+  use { 'tzachar/cmp-tabnine', after = "nvim-cmp", config = "require('tabnine')", run='./install.ps1' }
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('treesitter-config')"}
 
