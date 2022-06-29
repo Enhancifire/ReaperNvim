@@ -1,10 +1,15 @@
 local wk = require('which-key')
+local home = os.getenv("HOME")
 
 local wopts = {
   prefix = '<leader>',
   silent = true,
   noremap = true
 }
+
+local dotdir = function ()
+
+end
 
 local vopts = {
   prefix = "<leader>",
@@ -49,14 +54,6 @@ end
 
 
 local mappings = {
-
-  -- Quit
-  q = {
-    name = "Quit",
-    q = {":q<cr>", "Quit"},
-    Q = {":wq<cr>", "Save and Quit"},
-  },
-
   ---- Buffers
   b = {
     name = "Buffer",
@@ -68,9 +65,9 @@ local mappings = {
   c = {
     name = "Code",
     a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Actions"},
-    aa = {":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Actions Ranged"},
     s = {"<cmd>lua require('telescope.builtin').treesitter()<cr>", "Symbols"},
     r = {":lua vim.lsp.buf.rename()<CR>", "Rename Varialbe"},
+    o = {":AerialToggle<CR>", "Toggle Code Outline"}
   },
 
   -- Files
@@ -85,7 +82,8 @@ local mappings = {
   g = {
     name = "Git",
     b = {"<cmd>lua require('telescope.builtin').git_branches()<cr>", "Branches"},
-    s = {"<cmd>lua require('telescope.builtin').git_status()<cr>", "Stash"},
+    g = {toggle_lazygit, "Open Lazygit"},
+    s = {"<cmd>lua require('telescope.builtin').git_status()<cr>", "Status"},
     c = {"<cmd>lua require('telescope.builtin').git_commits()<cr>", "Commits"},
     t = {"<cmd>lua require('telescope.builtin').git_stash()<cr>", "Stash"},
     f = {"<cmd>lua require('telescope.builtin').git_files()<cr>", "Files"},
@@ -103,7 +101,11 @@ local mappings = {
       r = {":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR>", "Source configuration"},
       R = {":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR> :PackerSync <CR>", "Source and install plugins"},
     },
-    p = {":PackerSync <CR>", "Packer Sync"}
+    p = {
+      name = "Configuration",
+      s = {":PackerSync <CR>", "Packer Sync"},
+      p = {dotdir, "Open Personal Configuration"},
+    }
 
   },
 
@@ -121,6 +123,47 @@ local mappings = {
     q = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', "Show loclist"}
   },
 
+  -- Context Specific
+  m = {
+    name = "Wiki",
+    h = {":Vimwiki2HTML", "Open current file as html"},
+    n = {":VimwikiGoto", "Goto or create new page"},
+  },
+
+  -- NvimTree
+  n = {":NvimTreeToggle<CR>", "Toggle NvimTree"},
+
+  -- Opening Various Stuff
+  o = {
+    name = "open",
+    b = {":enew<CR>", "Open new empty buffer"},
+    w = {"<Plug>VimwikiIndex<CR>", "Open Wiki"},
+  },
+
+  -- Project Management
+  p = {
+    name = "Project",
+    p = {":Telescope projects<CR>", "Switch Projects"},
+  },
+
+  -- Quit
+  q = {
+    name = "Quit",
+    q = {":q<cr>", "Quit"},
+    Q = {":wq<cr>", "Save and Quit"},
+  },
+
+  -- Toggle
+  t = {
+    name = "Toggle",
+    m = {music, "Toggle Music Player"},
+    t = {":ToggleTerm<CR>", "Open Terminal"},
+    f = {toggle_float, "Floating Terminal"},
+    s = {btop, "Open System Monitor"},
+    o = {transp, "Toggle Opacity"},
+    p = {pythonTerm, "Open Python Terminal"}
+  },
+
   ---- Windows
   w = {
     name = "window",
@@ -133,55 +176,6 @@ local mappings = {
     s = {":sp <CR>", "Split Horizontally"},
     v = {":vs <CR>", "Split Vertically"},
   },
-
-  -- Opening Various Stuff
-  o = {
-    name = "open",
-    b = {":enew<CR>", "Open new empty buffer"},
-    w = {"<Plug>VimwikiIndex<CR>", "Open Wiki"}
-  },
-
-  -- Project Management
-  p = {
-    name = "Project",
-    p = {":Telescope projects<CR>", "Switch Projects"},
-  },
-
-  -- Toggle
-  t = {
-    name = "Toggle",
-    m = {music, "Toggle Music Player"},
-    t = {":ToggleTerm<CR>", "Open Terminal"},
-    f = {toggle_float, "Floating Terminal"},
-    g = {toggle_lazygit, "Open Lazygit"},
-    s = {btop, "Open System Monitor"},
-    o = {transp, "Toggle Opacity"},
-    p = {pythonTerm, "Open Python Terminal"}
-  },
-
-  -- Jupyter Bindings
-  j = {
-    name = "Jupyter",
-    i = {":MagmaInit python3<CR>", "Initialize Python environment"},
-    n = {"o# %%<CR>", "New Code Cell"},
-    l = {":MagmaEvaluateLine<CR>", "Evaluate Line"},
-    o = {":MagmaShowOutput<CR>", "Show Output"},
-    r = {":MagmaReevaluateCell<CR>", "Reevaluate Cell"},
-    p = {":MagmaEvaluateOperator<CR>", "Magma Evaluate Operator"},
-    d = {":MagmaDelete<CR>", "Magma Delete"},
-    e = {":MagmaInit ir<CR>", "Initialize R Environment"}
-  },
-
-  -- Context Specific
-  m = {
-    name = "Wiki",
-    h = {":Vimwiki2HTML", "Open current file as html"},
-    n = {":VimwikiGoto", "Goto or create new page"},
-  },
-
-  -- NvimTree
-  n = {":NvimTreeToggle<CR>", "Toggle NvimTree"},
-
 }
 
 wk.register(mappings, wopts)

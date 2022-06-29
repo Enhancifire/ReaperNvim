@@ -1,12 +1,15 @@
 local actions = require('telescope.actions')
+require('telescope').load_extension 'file_browser'
+require('telescope').load_extension 'arecibo'
+require('telescope').load_extension 'packer'
 require('telescope').setup {
   extensions = {
-    -- file_browser = {
-    --   theme = "tokyodark",
-    -- },
-    -- packer = {
-    --   theme = "tokyodark",
-    -- },
+    file_browser = {
+      theme = "tokyodark",
+    },
+    packer = {
+      theme = "tokyodark",
+    },
     -- arecibo = {
     --   ["selected_engine"]   = 'google',
     --   ["url_open_command"]  = 'xdg-open',

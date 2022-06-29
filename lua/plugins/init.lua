@@ -4,97 +4,192 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-	execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-	execute 'packadd packer.nvim'
+  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute 'packadd packer.nvim'
 end
 
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 return require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
 
-  -- Intellisense
+  -- The One Plugin To Rule Them All
   use {
-    { 'tami5/lspsaga.nvim', branch = 'nvim6.0' },
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
-    'nvim-lua/completion-nvim',
-    'tjdevries/nlua.nvim',
-    {'hrsh7th/nvim-cmp', event = "InsertEnter", config = "require('lsp/cmp-config')"},
-
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/cmp-buffer', after = "nvim-cmp"},
-    {'hrsh7th/cmp-path', after = "nvim-cmp"},
-    {'hrsh7th/cmp-cmdline', after = "nvim-cmp"},
-    {'hrsh7th/cmp-vsnip', after = "nvim-cmp"},
-    {'hrsh7th/vim-vsnip', after = "nvim-cmp"},
-    'onsails/lspkind-nvim',
+    'wbthomason/packer.nvim'
   }
-  use { 'tzachar/cmp-tabnine', after = "nvim-cmp", config = "require('tabnine')", run='./install.sh' }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = "require('treesitter-config')"}
+  -- Intellisense / LSP
+  use {
+    {
+      'tami5/lspsaga.nvim',
+      branch = 'nvim6.0'
+    },
+    {
+      'neovim/nvim-lspconfig'
+    },
+    {
+      'williamboman/nvim-lsp-installer'
+    },
+    {
+      'nvim-lua/completion-nvim'
+    },
+    {
+      'tjdevries/nlua.nvim'
+    },
+    {
+      'hrsh7th/nvim-cmp',
+      event = "BufWinEnter",
+      config = "require('lsp/cmp-config')"
+    },
+    {
+      'hrsh7th/cmp-nvim-lsp'
+    },
+    {
+      'hrsh7th/cmp-buffer',
+      after = "nvim-cmp",
+    },
+    {
+      'hrsh7th/cmp-path',
+      after = "nvim-cmp",
+      event = "BufWinEnter"
+    },
+    {
+      'hrsh7th/cmp-cmdline',
+      after = "nvim-cmp"
+    },
+    {
+      'hrsh7th/cmp-vsnip',
+      after = "nvim-cmp",
+      event = "BufWinEnter"
+    },
+    {
+      'hrsh7th/vim-vsnip',
+      after = "nvim-cmp",
+      event = "BufWinEnter"
+    },
+    {
+      'onsails/lspkind-nvim'
+    },
+  }
 
-  -- WhichKey
-  use { "folke/which-key.nvim" }
+  -- Tabnine: For Less typing and more fun
+  use {
+    'tzachar/cmp-tabnine',
+    after = "nvim-cmp",
+    config = "require('tabnine')",
+    run='./install.sh'
+  }
+
+  -- Treesitter: The Essential Part of Neovim PDE
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = "require('treesitter-config')"
+  }
+
+  -- WhichKey: Defining and Showing Hotkeys
+  use {
+    "folke/which-key.nvim"
+  }
 
   -- Flutter Development
-  use { 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim', after = "telescope.nvim", config = "require('flutter')"}
-
-
-  use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-
-  use {'andymass/vim-matchup', event = 'VimEnter'}
-
   use {
-    'w0rp/ale',
-    ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
-    cmd = 'ALEEnable',
-    config = 'vim.cmd[[ALEEnable]]'
+    'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    after = "telescope.nvim",
+    config = "require('flutter')"
   }
 
-  use 'tweekmonster/startuptime.vim'
 
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  -- Dispatch: To Quickly Build
+  use {
+    'tpope/vim-dispatch',
+    opt = true,
+    cmd = {'Dispatch', 'Make', 'Focus', 'Start'}
+  }
+  use {
+    'radenling/vim-dispatch-neovim'
+  }
 
-  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+  -- Go Through Matching Text
+  use {
+    'andymass/vim-matchup',
+    event = 'BufWinEnter'
+  }
 
-  use {'tjdevries/colorbuddy.vim'}
+  -- Checking the Starup Time for Neovim
+  use {
+    'tweekmonster/startuptime.vim'
+  }
+
+  -- For Markdown Previews
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+    cmd = 'MarkdownPreview',
+    event = "BufWinEnter",
+  }
 
   -- Devicons
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-web-devicons'
+  }
 
   -- Nvim-Tree-Lua
-  use {'kyazdani42/nvim-tree.lua', cmd = "NvimTreeToggle", config = "require('nvim-tree-config')"}
-
-  -- Cheat Sheet
-  use 'dbeniamine/cheat.sh-vim'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    cmd = "NvimTreeToggle",
+    config = "require('nvim-tree-config')"
+  }
 
   -- Snippets
-  use {'honza/vim-snippets', event = "BufWinEnter"}
-  use {'sirver/ultisnips', event = "BufWinEnter"}
+  use {
+    'honza/vim-snippets',
+    event = "BufWinEnter"
+  }
+  use {
+    'sirver/ultisnips',
+    event = "BufWinEnter"
+  }
+  use {
+    'cstrap/flask-snippets'
+  }
 
   -- CSS Color Preview
-  use { 'norcalli/nvim-colorizer.lua', config = "require('colorizer').setup{}", event = "BufRead" }
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = "require('colorizer').setup{}",
+    event = "BufRead"
+  }
 
   -- Telescope
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
-  use {'nvim-telescope/telescope.nvim', config = "require('telescope-config')"}
-  use {'nvim-telescope/telescope-fzf-native.nvim', after = "telescope.nvim"}
-  use { 'nvim-telescope/telescope-packer.nvim', after = "telescope.nvim", config = "require('telescope').load_extension 'packer'" }
-  use { "nvim-telescope/telescope-file-browser.nvim", after = "telescope.nvim", config = "require('telescope').load_extension 'file_browser'" }
+  use {
+    'nvim-lua/plenary.nvim'
+  }
+  use {
+    'nvim-lua/popup.nvim'
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    config = "require('telescope-config')"
+  }
+
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    after = "telescope.nvim"
+  }
+  use {
+    'nvim-telescope/telescope-packer.nvim',
+    -- after = "telescope.nvim",
+  }
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    -- after = "telescope.nvim",
+  }
   use {
     "nvim-telescope/telescope-arecibo.nvim",
     rocks = {"openssl", "lua-http-parser"},
-    after = "telescope.nvim",
-    config = "require('telescope').load_extension 'arecibo'",
+    -- after = "telescope.nvim",
   }
 
-  -- Themes
-  use {'dracula/vim', as = 'dracula'}
-  use { "ellisonleao/gruvbox.nvim" }
-  use { 'rose-pine/neovim', as = 'rose-pine' }
-  use 'joshdick/onedark.vim'
-  use 'tiagovla/tokyodark.nvim'
 
   -- Lualine
   use {
@@ -104,8 +199,14 @@ return require('packer').startup(function()
   }
 
   -- Treesitter plugins
-  use { 'windwp/nvim-ts-autotag', after = "nvim-treesitter" }
-  use { 'p00f/nvim-ts-rainbow', after = "nvim-treesitter" }
+  use {
+    'windwp/nvim-ts-autotag',
+    after = "nvim-treesitter"
+  }
+  use {
+    'p00f/nvim-ts-rainbow',
+    after = "nvim-treesitter"
+  }
 
   -- Dashboard
   use 'glepnir/dashboard-nvim'
@@ -127,66 +228,107 @@ return require('packer').startup(function()
   -- Indent Guides
   use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('indentation')"}
 
+  -- Themes
+  use {
+    {'dracula/vim', as = 'dracula'},
+    { "ellisonleao/gruvbox.nvim" },
+    { 'rose-pine/neovim', as = 'rose-pine' },
+    {'joshdick/onedark.vim'},
+    {'tiagovla/tokyodark.nvim'},
+  }
+
   -- Autoformat
-  use { 'jose-elias-alvarez/null-ls.nvim', cmd = "Format", config = "require('autoformat-config')" }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = "require('autoformat-config')"
+  }
 
   -- Embedded Terminal
-  use { 'akinsho/toggleterm.nvim', config = "require('toggleterm-config')"}
+  use {
+    'akinsho/toggleterm.nvim',
+    config = "require('toggleterm-config')"
+  }
 
   -- Comments
-  use { 'terrortylor/nvim-comment' ,
-  config = function ()
-    require('nvim_comment').setup({
-      comment_empty = false,
-      line_mapping = "<leader>cl",
-      operator_mapping = "<leader>cr"
-    })
-    end
+  use {
+    'terrortylor/nvim-comment',
+    config = function ()
+      require('commenter')
+    end,
+    event = "BufWinEnter"
   }
 
   -- Autopairs
-  use { 'windwp/nvim-autopairs', config = "require('autopairs-config')", after = "nvim-cmp" }
+  use {
+    'windwp/nvim-autopairs',
+    wants = "nvim-treesitter",
+    module = {
+      "nvim-autopairs.completion.cmp",
+      "nvim-autopairs"
+    },
+    config = "require('autopairs-config')",
+    after = "nvim-cmp"
+  }
 
--- For managing projects
-  use { 'ahmedkhalf/project.nvim', after = "telescope.nvim", config = "require('project-config')" }
+  -- For managing projects
+  use {
+    'ahmedkhalf/project.nvim',
+    after = "telescope.nvim",
+    config = "require('project-config')"
+  }
 
-  use {"ellisonleao/glow.nvim"}
-
+  -- Hopper for Hopping through the Code
   use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
       require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    end
+    end,
+    event = "BufWinEnter"
   }
 
+  -- Almighty Github Copilot
   -- use { 'github/copilot.vim' }
 
-  use { 'radenling/vim-dispatch-neovim' }
+  -- VimWiki
+  use {
+    'vimwiki/vimwiki',
+    event = "BufWinEnter"
+  }
 
-  -- Flask SNippets
-  use { 'cstrap/flask-snippets' }
+  -- Wakatime: Keeping Track of your Coding Progress
+  use {
+    'wakatime/vim-wakatime'
+  }
 
-  -- Yode for focused code editing
-  use { 'hoschi/yode-nvim', config = "require('yode-nvim').setup({})" }
+  use {
+    'junegunn/fzf.vim',
+    event = "BufWinEnter"
+  }
 
-  use { 'untitled-ai/jupyter_ascending.vim'}
-
-  use { 'vimwiki/vimwiki' }
-
-  use { 'wakatime/vim-wakatime' }
-
-  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
-
-  use { 'junegunn/fzf.vim' }
-
-  use { 'folke/lsp-colors.nvim' }
+  use {
+    'folke/lsp-colors.nvim',
+    config = function()
+      require('lsp.color-config')
+    end,
+    event = "BufWinEnter"
+  }
 
   use {
     "folke/trouble.nvim",
+    config = "require('trouble-config')",
+    event = "BufWinEnter"
   }
 
-  use { 'sotte/presenting.vim' }
+  use {
+    'sotte/presenting.vim',
+    event = "BufRead"
+  }
+
+  use {
+    'stevearc/aerial.nvim',
+    config = "require('aerial-config')",
+    event = "BufWinEnter",
+  }
 
 end)

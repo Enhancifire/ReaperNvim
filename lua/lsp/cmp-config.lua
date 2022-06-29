@@ -52,9 +52,9 @@ cmp.setup({
     end, { "i", "s" }),
   },
   sources = cmp.config.sources({
+    { name = 'cmp_tabnine' },
     { name = 'nvim_lsp' },
     { name = 'ultisnips' }, -- For ultisnips users.
-  }, {
     { name = 'buffer' },
   })
 })
