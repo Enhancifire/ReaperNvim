@@ -5,8 +5,6 @@ vim.o.pumheight= 10
 vim.o.fileencoding= 'utf-8'
 vim.o.ruler = true
 vim.o.cmdheight=2
--- vim.o.completeopt = 'menuone, noinsert, noselect'
-
 vim.o.mouse= 'a'
 vim.wo.wrap = false
 vim.o.backup = false
@@ -41,25 +39,4 @@ vim.wo.scrolloff=8
 vim.wo.signcolumn='yes'
 vim.o.swapfile = false
 
-
-vim.cmd([[
-fun! TrimWhiteSpace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
-endfun
-
-
-augroup FAIZ
-  autocmd!
-  autocmd BufWritePre * :call TrimWhiteSpace()
-augroup END
-]])
-
-
-vim.api.nvim_command([[
-	filetype plugin on
-	filetype indent on
-	syntax on
-]])
 

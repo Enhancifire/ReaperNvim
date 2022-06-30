@@ -1,0 +1,2 @@
+-- VimWiki
+require('user.wiki')

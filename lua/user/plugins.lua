@@ -49,7 +49,6 @@ return require('packer').startup(function()
     {
       'hrsh7th/cmp-path',
       after = "nvim-cmp",
-      event = "BufWinEnter"
     },
     {
       'hrsh7th/cmp-cmdline',
@@ -58,23 +57,27 @@ return require('packer').startup(function()
     {
       'hrsh7th/cmp-vsnip',
       after = "nvim-cmp",
-      event = "BufWinEnter"
     },
     {
       'hrsh7th/vim-vsnip',
       after = "nvim-cmp",
-      event = "BufWinEnter"
     },
     {
       'onsails/lspkind-nvim'
     },
   }
 
+  -- Hydra: For epic and quick vim usage
+  use {
+    'anuvyklack/hydra.nvim',
+    requires = 'anuvyklack/keymap-layer.nvim' -- needed only for pink hydras
+  }
+
   -- Tabnine: For Less typing and more fun
   use {
     'tzachar/cmp-tabnine',
     after = "nvim-cmp",
-    config = "require('tabnine')",
+    config = "require('lsp.tabnine-config')",
     run='./install.sh'
   }
 
@@ -95,7 +98,7 @@ return require('packer').startup(function()
     'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim',
     after = "telescope.nvim",
-    config = "require('flutter')"
+    config = "require('dev.flutter')"
   }
 
 
@@ -137,7 +140,7 @@ return require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     cmd = "NvimTreeToggle",
-    config = "require('nvim-tree-config')"
+    config = "require('dev.tree')"
   }
 
   -- Snippets
@@ -226,21 +229,27 @@ return require('packer').startup(function()
 
   -- Appearance--
   -- Indent Guides
-  use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('indentation')"}
+  use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('appearance.indents')"}
+
+  -- Fancy Notification
+  use { 'rcarriga/nvim-notify' }
 
   -- Themes
   use {
-    {'dracula/vim', as = 'dracula'},
+    { 'dracula/vim', as = 'dracula' },
     { "ellisonleao/gruvbox.nvim" },
     { 'rose-pine/neovim', as = 'rose-pine' },
-    {'joshdick/onedark.vim'},
-    {'tiagovla/tokyodark.nvim'},
+    { 'joshdick/onedark.vim' },
+    { 'tiagovla/tokyodark.nvim' },
+    { 'sainnhe/everforest' },
+    { 'sainnhe/sonokai' },
+    { 'sainnhe/gruvbox-material' },
   }
 
   -- Autoformat
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    config = "require('autoformat-config')"
+    config = "require('lsp.null-ls-config')"
   }
 
   -- Embedded Terminal
@@ -253,7 +262,7 @@ return require('packer').startup(function()
   use {
     'terrortylor/nvim-comment',
     config = function ()
-      require('commenter')
+      require('dev.comment-config')
     end,
     event = "BufWinEnter"
   }
@@ -266,15 +275,8 @@ return require('packer').startup(function()
       "nvim-autopairs.completion.cmp",
       "nvim-autopairs"
     },
-    config = "require('autopairs-config')",
+    config = "require('lsp.autopairs-config')",
     after = "nvim-cmp"
-  }
-
-  -- For managing projects
-  use {
-    'ahmedkhalf/project.nvim',
-    after = "telescope.nvim",
-    config = "require('project-config')"
   }
 
   -- Hopper for Hopping through the Code
@@ -301,6 +303,7 @@ return require('packer').startup(function()
     'wakatime/vim-wakatime'
   }
 
+  -- FZF: Searching through the files
   use {
     'junegunn/fzf.vim',
     event = "BufWinEnter"
@@ -316,7 +319,7 @@ return require('packer').startup(function()
 
   use {
     "folke/trouble.nvim",
-    config = "require('trouble-config')",
+    config = "require('lsp.trouble-config')",
     event = "BufWinEnter"
   }
 
@@ -325,9 +328,10 @@ return require('packer').startup(function()
     event = "BufRead"
   }
 
+  -- Code Structure Navigation
   use {
     'stevearc/aerial.nvim',
-    config = "require('aerial-config')",
+    config = "require('dev.aerial-config')",
     event = "BufWinEnter",
   }
 

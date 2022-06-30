@@ -1,22 +1,33 @@
--- Highest priority - Plugins
-require('plugins')
+-- Highest priority - Plugins ---------------------------
+require('user.plugins')
 
--- Keymaps
-require('keymaps')
-require('whichkey-conf')
 
--- Necessary settings
-require('settings')
+-- User Settings ----------------------------------------
+require('user.keymaps')
+require('user.whichkey')
+require('user.settings')
+require('user.hydra-config')
+require('user.autofire')
 
--- Language servers
-require('lsp.diagnostic_signs')
-require('lsp.language_servers')
 
--- Miscellanous plugins
-require('wiki')
-require('theme')
+-- Intellisense -----------------------------------------
+require('lsp')
+
+
+-- Appearance -------------------------------------------
+require('appearance')
+
+
+-- Miscellanous plugins ---------------------------------
+
+
+-- Test Functions ---------------------------------------
 require('functions')
 
--- Dashboard
-require('dashboard-config')
 
+-- Notifications ----------------------------------------
+require("notify").setup({
+  background_color = "#54577C"
+})
+
+vim.notify = require('notify')
