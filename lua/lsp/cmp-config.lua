@@ -5,10 +5,25 @@ local lspkind = require'lspkind'
 local luasnip = require('luasnip')
 local ls = require('luasnip')
 
+local types = require('luasnip.util.types')
+
 -- Luasnip Section
 luasnip.config.set_config {
   history = true,
   updateevents = "TextChanged, TextChangedI",
+  enable_autosnippets = true,
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+	virt_text = { { " Current Choice", "GruvboxBlue" } },
+      },
+    },
+    [types.insertNode] = {
+      active = {
+	virt_text = {{"●", ""}}
+      }
+    }
+  },
 }
 
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -21,13 +36,13 @@ vim.keymap.set({ "i", "s" }, "<C-k>", function()
 end)
 
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
-  if ls.expand_or_jumpable(-1) then
-    ls.expand_or_jump(-1)
+  if ls.jumpable(-1) then
+    ls.jump(-1)
   end
 
 end)
 
-vim.keymap.set({ "i", "s" }, "<C-m>", function()
+vim.keymap.set({ "i", "s" }, "<C-u>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
@@ -75,7 +90,7 @@ cmp.setup({
 
   formatting = {
     format = lspkind.cmp_format {
-      with_text = true,
+      with_text = false,
       menu = {
 	buffer = "[BUF]",
 	copilot = "[COP]",

@@ -39,10 +39,10 @@ return require('packer').startup(function()
     {
       'hrsh7th/cmp-nvim-lsp',
     },
-    {
+    --[[ {
       'hrsh7th/cmp-copilot',
       after = 'nvim-cmp'
-    },
+    }, ]]
     {
       'hrsh7th/cmp-buffer',
       after = "nvim-cmp",
@@ -302,7 +302,7 @@ return require('packer').startup(function()
   }
 
   -- Almighty Github Copilot
-  use { 'github/copilot.vim' }
+  --[[ use { 'github/copilot.vim' } ]]
 
   -- VimWiki
   use {
