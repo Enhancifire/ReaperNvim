@@ -1,24 +1,45 @@
 vim.g.completeopt = "menu, menuone, noselect, noinsert"
 
 local cmp = require'cmp'
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
+local lspkind = require'lspkind'
+local luasnip = require('luasnip')
+local ls = require('luasnip')
 
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
+-- Luasnip Section
+luasnip.config.set_config {
+  history = true,
+  updateevents = "TextChanged, TextChangedI",
+}
 
+require('luasnip.loaders.from_vscode').lazy_load()
+require('luasnip.loaders.from_lua').load({ paths = "~/.config/nvim/snippets/" })
+
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end)
+
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+  if ls.expand_or_jumpable(-1) then
+    ls.expand_or_jump(-1)
+  end
+
+end)
+
+vim.keymap.set({ "i", "s" }, "<C-m>", function()
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end)
+
+-- Cmp Section
+lspkind.init()
 
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   mapping = {
@@ -26,41 +47,56 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({select = false}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-     ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function()
       if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+	cmp.select_next_item()
       end
     end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function()
+    ['<C-p>'] = cmp.mapping(function()
       if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
+	cmp.select_prev_item()
       end
-    end, { "i", "s" }),
+    end),
   },
   sources = cmp.config.sources({
-    { name = 'cmp_tabnine' },
+    { name = "nvim_lua" },
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' }, -- For ultisnips users.
-    { name = 'buffer' },
-  })
+    { name = 'luasnip' },
+    { name = 'copilot' },
+    { name = "path" },
+    { name = 'cmp_tabnine', max_item_count = 5},
+    { name = 'buffer', keyword_length = 5},
+  }),
+
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+	buffer = "[BUF]",
+	copilot = "[COP]",
+	nvim_lsp = "[LSP]",
+	luasnip = "[SNIP]",
+	nvim_lua = "[API]",
+	path = "[PATH]",
+	cmp_tabnine = "[TN]"
+      }
+    }
+  },
+
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  }
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
@@ -68,6 +104,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {

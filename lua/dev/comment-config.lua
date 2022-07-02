@@ -1,5 +1,23 @@
-require('nvim_comment').setup({
-	comment_empty = false,
-	line_mapping = "<leader>cl",
-	operator_mapping = "<leader>cr"
+require("Comment").setup({
+  opleader = {
+    -- Line-comment Keymap
+    line = 'gc',
+
+    -- Block-comment Beymap
+    block = 'gb'
+  },
+
+  mappings = {
+    basic = true,
+
+    extra = true,
+
+    extended = true,
+  },
+
+  pre_hook = nil,
+
+  post_hook = nil,
+
+  ignore = nil,
 })

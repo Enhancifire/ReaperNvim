@@ -153,6 +153,12 @@ local mappings = {
     Q = {":wq<cr>", "Save and Quit"},
   },
 
+  -- Reload
+  r = {
+    name = "Reload",
+    s = {"<cmd>source ~/.config/nvim/lua/snippets/init.lua<CR>", "Reload Snippets"},
+  },
+
   -- Toggle
   t = {
     name = "Toggle",

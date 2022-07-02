@@ -29,9 +29,6 @@ return require('packer').startup(function()
       'williamboman/nvim-lsp-installer'
     },
     {
-      'nvim-lua/completion-nvim'
-    },
-    {
       'tjdevries/nlua.nvim'
     },
     {
@@ -40,10 +37,18 @@ return require('packer').startup(function()
       config = "require('lsp/cmp-config')"
     },
     {
-      'hrsh7th/cmp-nvim-lsp'
+      'hrsh7th/cmp-nvim-lsp',
+    },
+    {
+      'hrsh7th/cmp-copilot',
+      after = 'nvim-cmp'
     },
     {
       'hrsh7th/cmp-buffer',
+      after = "nvim-cmp",
+    },
+    {
+      'hrsh7th/cmp-nvim-lua',
       after = "nvim-cmp",
     },
     {
@@ -61,6 +66,10 @@ return require('packer').startup(function()
     {
       'hrsh7th/vim-vsnip',
       after = "nvim-cmp",
+    },
+    {
+      'saadparwaiz1/cmp_luasnip',
+      after = "nvim-cmp"
     },
     {
       'onsails/lspkind-nvim'
@@ -154,6 +163,9 @@ return require('packer').startup(function()
   }
   use {
     'cstrap/flask-snippets'
+  }
+  use {
+    'L3MON4D3/LuaSnip',
   }
 
   -- CSS Color Preview
@@ -260,7 +272,7 @@ return require('packer').startup(function()
 
   -- Comments
   use {
-    'terrortylor/nvim-comment',
+    'numToStr/Comment.nvim',
     config = function ()
       require('dev.comment-config')
     end,
@@ -290,7 +302,7 @@ return require('packer').startup(function()
   }
 
   -- Almighty Github Copilot
-  -- use { 'github/copilot.vim' }
+  use { 'github/copilot.vim' }
 
   -- VimWiki
   use {

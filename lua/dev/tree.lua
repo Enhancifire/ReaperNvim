@@ -15,10 +15,6 @@ require'nvim-tree'.setup {
     },
   },
   open_on_setup = true,
-  update_to_buf_dir = {
-    enable = true,
-    auto_open = false,
-  },
   git = {
     enable = true,
     ignore = false,
@@ -38,7 +34,6 @@ require'nvim-tree'.setup {
     height = 3,
     hide_root_folder = false,
     side = 'left',
-    auto_resize = false,
     mappings = {
       custom_only = false,
       list = {}

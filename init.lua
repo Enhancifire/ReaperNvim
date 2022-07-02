@@ -1,7 +1,6 @@
 -- Highest priority - Plugins ---------------------------
 require('user.plugins')
 
-
 -- User Settings ----------------------------------------
 require('user.keymaps')
 require('user.whichkey')
@@ -9,21 +8,14 @@ require('user.settings')
 require('user.hydra-config')
 require('user.autofire')
 
-
 -- Intellisense -----------------------------------------
 require('lsp')
-
 
 -- Appearance -------------------------------------------
 require('appearance')
 
-
--- Miscellanous plugins ---------------------------------
-
-
 -- Test Functions ---------------------------------------
 require('functions')
-
 
 -- Notifications ----------------------------------------
 require("notify").setup({
@@ -31,3 +23,6 @@ require("notify").setup({
 })
 
 vim.notify = require('notify')
+
+-- Miscellanous plugins ---------------------------------
+
