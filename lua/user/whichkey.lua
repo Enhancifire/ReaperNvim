@@ -30,7 +30,7 @@ local toggle_lazygit = function ()
 end
 
 local pythonTerm = function ()
-  local pyt = Terminal:new({direction = "vertical", cmd = "bpython", size = 30})
+  local pyt = Terminal:new({direction = "tab", cmd = "bpython", size = 30})
   return pyt:toggle()
 end
 
