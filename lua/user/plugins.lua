@@ -256,6 +256,7 @@ return require('packer').startup(function()
     { 'sainnhe/everforest' },
     { 'sainnhe/sonokai' },
     { 'sainnhe/gruvbox-material' },
+    { "catppuccin/nvim", as = "catppuccin"},
   }
 
   -- Autoformat
@@ -304,11 +305,6 @@ return require('packer').startup(function()
   -- Almighty Github Copilot
   --[[ use { 'github/copilot.vim' } ]]
 
-  -- VimWiki
-  use {
-    'vimwiki/vimwiki',
-    event = "BufWinEnter"
-  }
 
   -- Wakatime: Keeping Track of your Coding Progress
   use {
@@ -345,6 +341,32 @@ return require('packer').startup(function()
     'stevearc/aerial.nvim',
     config = "require('dev.aerial-config')",
     event = "BufWinEnter",
+  }
+
+  -- Zen/Presentation Mode
+  use {
+    {
+      "folke/twilight.nvim",
+      config = "require('appearance.zen.twilight-config')",
+      event = "BufWinEnter"
+    },
+    {
+      "folke/zen-mode.nvim",
+      config = "require('appearance.zen.mode')",
+      event = "BufWinEnter"
+    },
+  }
+
+  -- Firenvim
+  use {
+    'glacambre/firenvim',
+    run = function() vim.fn['firenvim#install'](0) end
+  }
+
+  use {
+    'p00f/cphelper.nvim',
+    config = "require('dev.cph')",
+    event = "BufWinEnter"
   }
 
 end)

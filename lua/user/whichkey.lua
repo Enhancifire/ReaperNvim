@@ -182,6 +182,13 @@ local mappings = {
     s = {":sp <CR>", "Split Horizontally"},
     v = {":vs <CR>", "Split Vertically"},
   },
+
+  -- Zen Mode
+  z = {
+    name = "Focus Mode",
+    z = {":ZenMode<CR>", "Zen Mode"},
+    t = {":Twilight<CR>", "Toggle Twilight"}
+  }
 }
 
 wk.register(mappings, wopts)
