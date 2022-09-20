@@ -40,8 +40,8 @@ return require('packer').startup(function()
       'hrsh7th/cmp-nvim-lsp',
     },
     --[[ {
-      'hrsh7th/cmp-copilot',
-      after = 'nvim-cmp'
+    'hrsh7th/cmp-copilot',
+    after = 'nvim-cmp'
     }, ]]
     {
       'hrsh7th/cmp-buffer',
@@ -239,24 +239,58 @@ return require('packer').startup(function()
     end
   }
 
+  -- Neogit: A Magit Clone
+  use {
+    'TimUntersberger/neogit',
+    config = function ()
+      require('dev.git')
+    end
+  }
+
   -- Appearance--
   -- Indent Guides
-  use {"lukas-reineke/indent-blankline.nvim", event = "BufRead", config = "require('appearance.indents')"}
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    config = function ()
+      require('appearance.indents')
+    end
+  }
 
   -- Fancy Notification
-  use { 'rcarriga/nvim-notify' }
+  use {
+    'rcarriga/nvim-notify'
+  }
 
   -- Themes
   use {
-    { 'dracula/vim', as = 'dracula' },
-    { "ellisonleao/gruvbox.nvim" },
-    { 'rose-pine/neovim', as = 'rose-pine' },
-    { 'joshdick/onedark.vim' },
-    { 'tiagovla/tokyodark.nvim' },
-    { 'sainnhe/everforest' },
-    { 'sainnhe/sonokai' },
-    { 'sainnhe/gruvbox-material' },
-    { "catppuccin/nvim", as = "catppuccin"},
+    {
+      'dracula/vim', as = 'dracula'
+    },
+    {
+      "ellisonleao/gruvbox.nvim"
+    },
+    {
+      'rose-pine/neovim', as = 'rose-pine'
+    },
+    {
+      'joshdick/onedark.vim'
+    },
+    {
+      'tiagovla/tokyodark.nvim'
+    },
+    {
+      'sainnhe/everforest'
+    },
+    {
+      'sainnhe/sonokai'
+    },
+    {
+      'sainnhe/gruvbox-material'
+    },
+    {
+      "catppuccin/nvim", as = "catppuccin"
+    },
   }
 
   -- Autoformat
@@ -274,10 +308,10 @@ return require('packer').startup(function()
   -- Comments
   use {
     'numToStr/Comment.nvim',
+    event = "BufWinEnter",
     config = function ()
       require('dev.comment-config')
-    end,
-    event = "BufWinEnter"
+    end
   }
 
   -- Autopairs
