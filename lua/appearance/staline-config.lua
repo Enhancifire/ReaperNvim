@@ -16,7 +16,7 @@ require('staline').setup {
     branch_symbol = " "
   },
 
-  mode_colors = {n = "#FE6847", i = "#F5D6BA", c = "#ACC3A6", v = "#F6C177", V = "#C179B9"},
+  -- mode_colors = {n = "#FE6847", i = "#F5D6BA", c = "#ACC3A6", v = "#F6C177", V = "#C179B9"},
   mode_icons = {
     n = " NORMAL",
     i = " INSERT",
@@ -28,7 +28,7 @@ require('staline').setup {
   sections = {
     left = {'-mode', 'left_sep_double', ' ', 'branch'},
     mid = {'file_name'},
-    right = {'right_sep_double', '-line_column'}
+    right = {'right_sep_double', '-line_column', 'flutter'}
   },
 
   special_table = {

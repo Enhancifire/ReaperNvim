@@ -26,7 +26,6 @@ vim.wo.cursorline = true
 vim.o.showtabline=2
 vim.o.updatetime=300
 vim.o.timeoutlen=500
-vim.o.clipboard= 'unnamedplus'
 vim.wo.relativenumber = true
 vim.wo.nu = true
 vim.o.exrc = true

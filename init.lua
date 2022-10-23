@@ -17,12 +17,13 @@ require('appearance')
 -- Test Functions ---------------------------------------
 require('functions')
 
+-- System Functions -------------------------------------
+require('system')
+
 -- Notifications ----------------------------------------
 require("notify").setup({
   background_color = "#54577C"
 })
 
 vim.notify = require('notify')
-
--- Miscellanous plugins ---------------------------------
 

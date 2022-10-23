@@ -31,7 +31,6 @@ require'nvim-tree'.setup {
   hijack_netrw = true,
   view = {
     width = 30,
-    height = 3,
     hide_root_folder = false,
     side = 'left',
     mappings = {

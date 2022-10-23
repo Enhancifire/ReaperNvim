@@ -12,7 +12,6 @@ require("Comment").setup({
 
     extra = true,
 
-    extended = true,
   },
 
   pre_hook = nil,
