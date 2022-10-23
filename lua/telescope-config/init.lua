@@ -7,11 +7,6 @@ require("telescope").setup({
 		-- packer = {
 		--   theme = "tokyodark",
 		-- },
-		-- arecibo = {
-		--   ["selected_engine"]   = 'google',
-		--   ["url_open_command"]  = 'xdg-open',
-		--   ["show_http_headers"] = false,
-		--   ["show_domain_icons"] = false,
 		-- },
 	},
 	defaults = {
@@ -67,3 +62,5 @@ require("telescope").setup({
 		},
 	},
 })
+
+require("telescope").load_extension("persisted")

@@ -5,11 +5,11 @@ require("mason-lspconfig").setup({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-caps = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local caps = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require("lspconfig")["pyright"].setup({
-	capabilities = capabilities,
-})
+-- require("lspconfig")["pyright"].setup({
+-- 	capabilities = capabilities,
+-- })
 
 require("lspconfig")["pylsp"].setup({
 	capabilities = capabilities,

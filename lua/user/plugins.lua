@@ -117,6 +117,8 @@ return require("packer").startup(function()
 	-- WhichKey: Defining and Showing Hotkeys
 	use({ "folke/which-key.nvim" })
 
+	use({ "mrjones2014/legendary.nvim" })
+
 	-- Flutter Development
 	use({
 		"akinsho/flutter-tools.nvim",
@@ -132,6 +134,13 @@ return require("packer").startup(function()
 		cmd = { "Dispatch", "Make", "Focus", "Start" },
 	})
 	use({ "radenling/vim-dispatch-neovim" })
+
+	use({
+		"olimorris/persisted.nvim",
+		config = function()
+			require("persisted").setup()
+		end,
+	})
 
 	-- Go Through Matching Text
 	use({
@@ -174,8 +183,9 @@ return require("packer").startup(function()
 
 	-- CSS Color Preview
 	use({
-		"norcalli/nvim-colorizer.lua",
-		config = "require('colorizer').setup{}",
+		"uga-rosa/ccc.nvim",
+		config = "require('dev.colorizer-config')",
+		event = "BufWinEnter",
 	})
 
 	-- Telescope
@@ -209,8 +219,28 @@ return require("packer").startup(function()
 		rocks = { "openssl", "lua-http-parser" },
 		config = function()
 			require("telescope").load_extension("arecibo")
+			require("telescope").setup({
+				extensions = {
+
+					arecibo = {
+						["selected_engine"] = "google",
+						["url_open_command"] = "xdg-open",
+						["show_http_headers"] = false,
+						["show_domain_icons"] = false,
+					},
+				},
+			})
 		end,
 		after = "telescope.nvim",
+	})
+
+	-- Marks Navigation
+	use({
+		"chentoast/marks.nvim",
+		config = function()
+			require("user.marks-config")
+		end,
+		event = "BufWinEnter",
 	})
 
 	-- Lualine
@@ -269,9 +299,37 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- Fancy Notification
+	-- Fancy UI
+
+	use({ "MunifTanjim/nui.nvim" })
+
+	use({
+		"stevearc/dressing.nvim",
+		event = "VimEnter",
+		config = function()
+			require("appearance.ui.dressing-config")
+		end,
+	})
+
+	use({
+		"folke/noice.nvim",
+		event = "VimEnter",
+
+		config = function()
+			require("appearance.ui.noice-config")
+		end,
+	})
+
 	use({
 		"rcarriga/nvim-notify",
+	})
+
+	use({
+		"gorbit99/codewindow.nvim",
+		config = function()
+			require("appearance.ui.minimap")
+		end,
+		event = "BufWinEnter",
 	})
 
 	-- Themes
@@ -405,11 +463,14 @@ return require("packer").startup(function()
 		run = function()
 			vim.fn["firenvim#install"](0)
 		end,
+		command = "Firenvim",
 	})
 
-	use({
-		"p00f/cphelper.nvim",
-		config = "require('dev.cph')",
-		event = "BufWinEnter",
-	})
+	use({ "ThePrimeagen/vim-be-good" })
+
+	-- use({
+	-- 	"p00f/cphelper.nvim",
+	-- 	config = "require('dev.cph')",
+	-- 	event = "BufWinEnter",
+	-- })
 end)

@@ -9,4 +9,4 @@ require("appearance.theme.tokyo")
 require("appearance.theme.catpu")
 
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-vim.cmd("colorscheme tokyodark")
+vim.cmd("colorscheme rose-pine")

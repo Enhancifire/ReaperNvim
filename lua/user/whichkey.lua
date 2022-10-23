@@ -1,13 +1,11 @@
 local wk = require("which-key")
-local home = os.getenv("HOME")
+local legendary = require("legendary")
 
 local wopts = {
 	prefix = "<leader>",
 	silent = true,
 	noremap = true,
 }
-
-local dotdir = function() end
 
 local vopts = {
 	prefix = "<leader>",
@@ -42,11 +40,6 @@ local btop = function()
 	return ht:toggle()
 end
 
-local music = function()
-	local ncp = Terminal:new({ direction = "float", cmd = "ncmpcpp" })
-	return ncp:toggle()
-end
-
 local transp = function()
 	if vim.g.tokyodark_transparent_background == true then
 		vim.g.tokyodark_transparent_background = false
@@ -55,7 +48,7 @@ local transp = function()
 	end
 end
 
-local mappings = {
+local nmaps = {
 	---- Buffers
 	b = {
 		name = "Buffer",
@@ -172,7 +165,7 @@ local mappings = {
 	-- Toggle
 	t = {
 		name = "Toggle",
-		m = { music, "Toggle Music Player" },
+		m = { ":lua require('codewindow').toggle_minimap()<CR>", "Toggle Minimap" },
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
 		f = { toggle_float, "Floating Terminal" },
 		s = { btop, "Open System Monitor" },
@@ -201,10 +194,19 @@ local mappings = {
 	},
 }
 
-wk.register(mappings, wopts)
-wk.register({
+local vmaps = {
 	d = {
 		name = "Debug",
 		e = { "<Cmd>lua require('dapui').eval()<CR>", "Evaluate Expression" },
 	},
-}, vopts)
+}
+
+legendary.setup()
+
+wk.register(nmaps, wopts)
+wk.register(vmaps, vopts)
+-- legendary.bind_whichkey({
+-- 	nmaps,
+-- 	wopts,
+-- 	false,
+-- })

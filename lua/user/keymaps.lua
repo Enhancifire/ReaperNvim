@@ -41,5 +41,6 @@ nkeymap("gt", ":Telescope lsp_type_definitions<cr>")
 nkeymap("gs", ":HopLine<CR>")
 
 nkeymap("<C-p>", ":Files<CR>")
+nkeymap("<C-;>", ":TroubleToggle<CR>")
 nkeymap("<C-.>", ":Telescope commands<CR>")
 nkeymap("<C-g>", ":Rg<CR>")
