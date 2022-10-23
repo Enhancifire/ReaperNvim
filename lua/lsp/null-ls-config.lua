@@ -1,25 +1,31 @@
-local null_ls = require('null-ls')
+local null_ls = require("null-ls")
+local masonnull = require("mason-null-ls")
+masonnull.setup({
+	ensure_installed = { "stylua", "black" },
+})
 
 local formatting = null_ls.builtins.formatting
 
+masonnull.setup_handlers({
+	stylua = function()
+		null_ls.register(formatting.stylua)
+	end,
+	black = function()
+		null_ls.register(formatting.black)
+	end,
+	clang_format = function()
+		null_ls.register(formatting.clang_format)
+	end,
+	codespell = function()
+		null_ls.register(formatting.codespell)
+	end,
+	prettier = function()
+		null_ls.register(formatting.prettier)
+	end,
+})
+
 null_ls.setup({
-  sources = {
-    formatting.prettier,
-    formatting.black.with({
-      filetypes = { 'python' },
-    }),
-    formatting.clang_format,
-    formatting.dart_format,
-    formatting.codespell.with({ filetypes = { 'markdown' } })
-  },
-  on_attach = function(client)
-    if client.server_capabilities.document_formatting then
-      vim.cmd([[
-      augroup LspFormatting
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-      augroup END
-      ]])
-    end
-  end
+	sources = {
+		formatting.dart_format,
+	},
 })

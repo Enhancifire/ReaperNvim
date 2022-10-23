@@ -1,2 +1,2 @@
 -- VimWiki
-require('user.wiki')
+require("user.wiki")

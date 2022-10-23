@@ -1,18 +1,18 @@
-local configs = require'nvim-treesitter.configs'
+local configs = require("nvim-treesitter.configs")
 
 configs.setup = {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  }
+	ensure_installed = "all",
+	highlight = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+		max_file_lines = nil,
+	},
 }
 
 vim.opt.foldmethod = "expr"

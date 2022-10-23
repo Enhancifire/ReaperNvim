@@ -1,22 +1,21 @@
 require("Comment").setup({
-  opleader = {
-    -- Line-comment Keymap
-    line = 'gc',
+	opleader = {
+		-- Line-comment Keymap
+		line = "gc",
 
-    -- Block-comment Beymap
-    block = 'gb'
-  },
+		-- Block-comment Beymap
+		block = "gb",
+	},
 
-  mappings = {
-    basic = true,
+	mappings = {
+		basic = true,
 
-    extra = true,
+		extra = true,
+	},
 
-  },
+	pre_hook = nil,
 
-  pre_hook = nil,
+	post_hook = nil,
 
-  post_hook = nil,
-
-  ignore = nil,
+	ignore = nil,
 })

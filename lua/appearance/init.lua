@@ -1,8 +1,8 @@
 -- Themes
-require('appearance.theme')
+require("appearance.theme")
 
 -- Dashboard
-require('appearance.dashboard')
+require("appearance.dashboard")
 
 -- Clean Seperator
 vim.api.nvim_command([[

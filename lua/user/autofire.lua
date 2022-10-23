@@ -12,13 +12,13 @@ vim.api.nvim_command([[
 	syntax on
 ]])
 
-local pregroup = vim.api.nvim_create_augroup("PreWriteSteps", {clear = true})
+local pregroup = vim.api.nvim_create_augroup("PreWriteSteps", { clear = true })
 
-local enter_group = vim.api.nvim_create_augroup("BufferEnter", {clear = true})
+local enter_group = vim.api.nvim_create_augroup("BufferEnter", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  command = "call TrimWhiteSpace()",
-  group = pregroup,
+	command = "call TrimWhiteSpace()",
+	group = pregroup,
 })
 
 --[[ vim.api.nvim_create_autocmd("BufEnter", {
