@@ -61,21 +61,12 @@ require('dressing').setup({
     -- Set to false to disable the vim.ui.select implementation
     enabled = true,
 
-    -- Priority list of preferred vim.select implementations
-    backend = { "telescope" },
+    telescope = {
+      layout_config = {
+	width = 120,
+	height = 25,
+      }
+    }
 
-    -- Trim trailing `:` from prompt
-    trim_prompt = true,
-
-    -- Options for telescope selector
-    -- These are passed into the telescope picker directly. Can be used like:
-    -- telescope = require('telescope.themes').get_ivy({...})
-    telescope = nil,
-
-    -- Used to override format_item. See :help dressing-format
-    format_item_override = {},
-
-    -- see :help dressing_get_config
-    get_config = nil,
   },
 })

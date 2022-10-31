@@ -29,7 +29,9 @@ require("nvim-tree").setup({
 		},
 	},
 	hijack_netrw = true,
+	disable_netrw = true,
 	view = {
+		adaptive_size = true,
 		width = 30,
 		hide_root_folder = false,
 		side = "left",
@@ -40,6 +42,18 @@ require("nvim-tree").setup({
 		number = false,
 		relativenumber = false,
 		signcolumn = "yes",
+		float = {
+			enable = false,
+			quit_on_focus_loss = true,
+			open_win_config = {
+				relative = "editor",
+				border = "rounded",
+				width = 30,
+				height = 30,
+				row = 1,
+				col = 1,
+			},
+		},
 	},
 })
 vim.cmd([[

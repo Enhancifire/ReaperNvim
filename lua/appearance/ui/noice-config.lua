@@ -1,7 +1,7 @@
 
 require('noice').setup({
   cmdline = {
-    enabled = false, -- enables the Noice cmdline UI
+    enabled = true, -- enables the Noice cmdline UI
     view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
     opts = { buf_options = { filetype = "vim" } }, -- enable syntax highlighting in the cmdline
     ---@type table<string, CmdlineFormat>

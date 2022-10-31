@@ -60,7 +60,6 @@ local nmaps = {
 	-- Code Actions
 	c = {
 		name = "Code",
-		a = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Actions" },
 		s = { "<cmd>lua require('telescope.builtin').treesitter()<cr>", "Symbols" },
 		r = { ":lua vim.lsp.buf.rename()<CR>", "Rename Varialbe" },
 		o = { ":AerialToggle<CR>", "Toggle Code Outline" },
@@ -82,7 +81,7 @@ local nmaps = {
 	-- Files
 	f = {
 		name = "Files",
-		f = { ":Files<CR>", "Find Files" },
+		f = { ":Telescope find_files<CR>", "Find Files" },
 		g = { ":Rg<CR>", "Live Grep" },
 	},
 
@@ -201,7 +200,10 @@ local vmaps = {
 	},
 }
 
-legendary.setup()
+legendary.setup({
+	select_prompt = "fzf",
+	auto_register_which_key = true,
+})
 
 wk.register(nmaps, wopts)
 wk.register(vmaps, vopts)

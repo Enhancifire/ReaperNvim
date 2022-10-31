@@ -198,7 +198,20 @@ return require("packer").startup(function()
 
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+		config = function ()
+			require("telescope").load_extension("fzf")
+		end,
 		after = "telescope.nvim",
+	})
+
+	use({
+	  'nvim-telescope/telescope-media-files.nvim',
+	  after = "telescope.nvim",
+	  config = function ()
+	  	require('telescope').load_extension('media_files')
+
+	  end
 	})
 	use({
 		"nvim-telescope/telescope-packer.nvim",
@@ -332,6 +345,14 @@ return require("packer").startup(function()
 		event = "BufWinEnter",
 	})
 
+	use({
+		"rainbowhxch/beacon.nvim",
+		config = function()
+			require("appearance.ui.flasher")
+		end,
+		event = "BufRead",
+	})
+
 	-- Themes
 	use({
 		{
@@ -428,7 +449,7 @@ return require("packer").startup(function()
 	use({
 		"folke/trouble.nvim",
 		config = "require('lsp.trouble-config')",
-		event = "BufWinEnter",
+		-- event = "BufWinEnter",
 	})
 
 	use({

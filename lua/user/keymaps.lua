@@ -24,8 +24,6 @@ map("i", "kj", "<ESC>", opts)
 vkeymap("J", ":m '>+1<CR>gv=gv")
 vkeymap("K", ":m '>-2<CR>gv=gv")
 
-nkeymap("<Leader>fr", "<CMD>Telescope live_grep <CR>")
-
 vkeymap("<", "<gv")
 vkeymap(">", ">gv")
 
@@ -40,7 +38,7 @@ nkeymap("gt", ":Telescope lsp_type_definitions<cr>")
 
 nkeymap("gs", ":HopLine<CR>")
 
-nkeymap("<C-p>", ":Files<CR>")
+nkeymap("<C-p>", ":Telescope find_files<CR>")
 nkeymap("<C-;>", ":TroubleToggle<CR>")
-nkeymap("<C-.>", ":Telescope commands<CR>")
+nkeymap("<C-.>", ":Legendary<CR>")
 nkeymap("<C-g>", ":Rg<CR>")
