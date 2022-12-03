@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 local map = vim.api.nvim_set_keymap
+
 -- Set leader
 map("n", "<Space>", "<NOP>", opts)
 vim.g.mapleader = " "
@@ -17,8 +18,8 @@ local function ikeymap(key, exec)
 end
 
 -- remap to ESC
-map("i", "jk", "<ESC>", opts)
-map("i", "kj", "<ESC>", opts)
+ikeymap("jk", "<ESC>")
+ikeymap("kj", "<ESC>")
 
 -- Move using Highlight
 vkeymap("J", ":m '>+1<CR>gv=gv")
@@ -36,9 +37,15 @@ nkeymap("gw", ":Telescope lsp_workspace_symbols<cr>")
 nkeymap("gr", ":Telescope lsp_references<cr>")
 nkeymap("gt", ":Telescope lsp_type_definitions<cr>")
 
+nkeymap("<C-u>", "<C-u>zz")
+nkeymap("<C-d>", "<C-d>zz")
+
 nkeymap("gs", ":HopLine<CR>")
 
 nkeymap("<C-p>", ":Telescope find_files<CR>")
 nkeymap("<C-;>", ":TroubleToggle<CR>")
 nkeymap("<C-.>", ":Legendary<CR>")
 nkeymap("<C-g>", ":Rg<CR>")
+
+nkeymap("n", "nzzzv")
+nkeymap("N", "Nzzzv")

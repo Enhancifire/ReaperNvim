@@ -37,3 +37,5 @@ vim.o.scrolloff = 8
 vim.wo.scrolloff = 8
 vim.wo.signcolumn = "yes"
 vim.o.swapfile = false
+vim.g.undofile = true
+vim.g.undodir = "~/.code/undo"

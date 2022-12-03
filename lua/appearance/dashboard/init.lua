@@ -20,6 +20,12 @@ db.custom_header = {
 	"                                                              ",
 }
 
+-- db.custom_header = {
+-- 	'"Time flows on,',
+-- 	"Like a Mighty Dream,",
+-- 	'Like an Unending Dream"',
+-- }
+
 -- db.custom_header = reapernvim
 db.preview_file_width = 160
 db.preview_file_height = 15

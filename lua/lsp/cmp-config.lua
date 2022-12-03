@@ -83,7 +83,6 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "copilot" },
 		{ name = "path" },
-		{ name = "cmp_tabnine", max_item_count = 5 },
 		{ name = "buffer", keyword_length = 5 },
 	}),
 
@@ -97,7 +96,6 @@ cmp.setup({
 				luasnip = "[SNIP]",
 				nvim_lua = "[API]",
 				path = "[PATH]",
-				cmp_tabnine = "[TN]",
 			},
 		}),
 	},

@@ -1,28 +1,28 @@
 -- Highest priority - Plugins ---------------------------
-require('user.plugins')
+require("user.plugins")
 
 -- User Settings ----------------------------------------
-require('user.keymaps')
-require('user.whichkey')
-require('user.settings')
-require('user.hydra-config')
-require('user.autofire')
+require("user.keymaps")
+require("user.whichkey")
+require("user.settings")
+require("user.hydra-config")
+require("user.autofire")
 
 -- Intellisense -----------------------------------------
-require('lsp')
+require("lsp")
 
 -- Appearance -------------------------------------------
-require('appearance')
+require("appearance")
 
 -- Test Functions ---------------------------------------
-require('functions')
+require("functions")
 
 -- System Functions -------------------------------------
-require('system')
+require("system")
 
 -- Notifications ----------------------------------------
 require("notify").setup({
-  background_color = "#54577C"
+	background_color = "#54577C",
 })
 
-vim.notify = require('notify')
+vim.notify = require("notify")

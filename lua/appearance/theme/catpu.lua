@@ -6,7 +6,7 @@ catpuccin.setup({
 		shade = "dark",
 		percentage = 0.15,
 	},
-	transparent_background = true,
+	transparent_background = false,
 	term_colors = true,
 	compile = {
 		enabled = false,
@@ -86,3 +86,4 @@ catpuccin.setup({
 		mini = false,
 	},
 })
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha

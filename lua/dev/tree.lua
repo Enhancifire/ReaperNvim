@@ -20,7 +20,7 @@ require("nvim-tree").setup({
 		ignore = false,
 	},
 	diagnostics = {
-		enable = false,
+		enable = true,
 		icons = {
 			hint = "",
 			info = "",
@@ -44,7 +44,7 @@ require("nvim-tree").setup({
 		signcolumn = "yes",
 		float = {
 			enable = false,
-			quit_on_focus_loss = true,
+			quit_on_focus_loss = false,
 			open_win_config = {
 				relative = "editor",
 				border = "rounded",
@@ -56,6 +56,26 @@ require("nvim-tree").setup({
 		},
 	},
 })
+
 vim.cmd([[
 autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]])
+
+local nvim_tree_events = require("nvim-tree.events")
+local bufferline_api = require("bufferline.api")
+
+local function get_tree_size()
+	return require("nvim-tree.view").View.width
+end
+
+nvim_tree_events.subscribe("TreeOpen", function()
+	bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe("Resize", function()
+	bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe("TreeClose", function()
+	bufferline_api.set_offset(0)
+end)

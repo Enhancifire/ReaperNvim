@@ -99,19 +99,13 @@ return require("packer").startup(function()
 		requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
 	})
 
-	-- Tabnine: For Less typing and more fun
-	use({
-		"tzachar/cmp-tabnine",
-		after = "nvim-cmp",
-		config = "require('lsp.tabnine-config')",
-		run = "./install.sh",
-	})
-
 	-- Treesitter: The Essential Part of Neovim PDE
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
-		config = "require('treesitter-config')",
+		config = function()
+			require("treesitter-config")
+		end,
 	})
 
 	-- WhichKey: Defining and Showing Hotkeys
@@ -199,19 +193,18 @@ return require("packer").startup(function()
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		config = function ()
+		config = function()
 			require("telescope").load_extension("fzf")
 		end,
 		after = "telescope.nvim",
 	})
 
 	use({
-	  'nvim-telescope/telescope-media-files.nvim',
-	  after = "telescope.nvim",
-	  config = function ()
-	  	require('telescope').load_extension('media_files')
-
-	  end
+		"nvim-telescope/telescope-media-files.nvim",
+		after = "telescope.nvim",
+		config = function()
+			require("telescope").load_extension("media_files")
+		end,
 	})
 	use({
 		"nvim-telescope/telescope-packer.nvim",
@@ -256,11 +249,16 @@ return require("packer").startup(function()
 		event = "BufWinEnter",
 	})
 
-	-- Lualine
+	-- Statusline
 	use({
 		"tamton-aquib/staline.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		-- config = "require('statline-config')"
+	})
+
+	-- Tabline
+	use({
+		"romgrk/barbar.nvim",
 	})
 
 	use({
@@ -274,8 +272,8 @@ return require("packer").startup(function()
 		after = "nvim-treesitter",
 	})
 	use({
-		"p00f/nvim-ts-rainbow",
-		after = "nvim-treesitter",
+		"junegunn/rainbow_parentheses.vim",
+		event = "BufWinEnter",
 	})
 
 	-- Dashboard
@@ -351,6 +349,13 @@ return require("packer").startup(function()
 			require("appearance.ui.flasher")
 		end,
 		event = "BufRead",
+	})
+
+	use({
+		"xiyaowong/nvim-transparent",
+		config = function()
+			require("appearance.ui.transparent_config")
+		end,
 	})
 
 	-- Themes
@@ -488,6 +493,8 @@ return require("packer").startup(function()
 	})
 
 	use({ "ThePrimeagen/vim-be-good" })
+
+	use({ "simnalamburt/vim-mundo" })
 
 	-- use({
 	-- 	"p00f/cphelper.nvim",

@@ -22,6 +22,9 @@ masonnull.setup_handlers({
 	prettier = function()
 		null_ls.register(formatting.prettier)
 	end,
+	fixjson = function()
+		null_ls.register(formatting.fixjson)
+	end,
 })
 
 null_ls.setup({

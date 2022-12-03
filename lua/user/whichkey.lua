@@ -40,14 +40,6 @@ local btop = function()
 	return ht:toggle()
 end
 
-local transp = function()
-	if vim.g.tokyodark_transparent_background == true then
-		vim.g.tokyodark_transparent_background = false
-	else
-		vim.g.tokyodark_transparent_background = true
-	end
-end
-
 local nmaps = {
 	---- Buffers
 	b = {
@@ -132,6 +124,13 @@ local nmaps = {
 		q = { "<cmd>lua vim.lsp.diagnostic.setloclist()<CR>", "Show loclist" },
 	},
 
+	-- Context menu
+	m = {
+		name = "Context",
+		i = { ":FlutterEmulators<CR>", "Emulators" },
+		r = { ":FlutterRun<CR>", "Run Flutter App" },
+	},
+
 	-- NvimTree
 	n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
 
@@ -168,8 +167,14 @@ local nmaps = {
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
 		f = { toggle_float, "Floating Terminal" },
 		s = { btop, "Open System Monitor" },
-		o = { transp, "Toggle Opacity" },
 		p = { pythonTerm, "Open Python Terminal" },
+		u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
+	},
+
+	u = {
+		name = "UI",
+		o = { ":TransparentToggle<CR>", "Toggle Opacity" },
+		c = { ":Telescope colorscheme<CR>", "Change Colorscheme" },
 	},
 
 	---- Windows
@@ -201,14 +206,11 @@ local vmaps = {
 }
 
 legendary.setup({
-	select_prompt = "fzf",
-	auto_register_which_key = true,
+	select_prompt = "Commands",
+	which_key = {
+		auto_register = true,
+	},
 })
 
 wk.register(nmaps, wopts)
 wk.register(vmaps, vopts)
--- legendary.bind_whichkey({
--- 	nmaps,
--- 	wopts,
--- 	false,
--- })
