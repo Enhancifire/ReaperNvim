@@ -117,8 +117,13 @@ if present then
 			"nvim-treesitter/nvim-treesitter",
 			run = ":TSUpdate",
 			config = function()
-				require("treesitter-config")
+				require("tsconfig")
 			end,
+		})
+
+		use({
+			"nvim-treesitter/playground",
+			event = "BufRead",
 		})
 
 		-- WhichKey: Defining and Showing Hotkeys
@@ -139,6 +144,7 @@ if present then
 			"tpope/vim-dispatch",
 			opt = true,
 			cmd = { "Dispatch", "Make", "Focus", "Start" },
+			event = "BufWinEnter",
 		})
 		use({ "radenling/vim-dispatch-neovim" })
 
@@ -233,31 +239,31 @@ if present then
 			end,
 			after = "telescope.nvim",
 		})
-		use({
-			"nvim-telescope/telescope-arecibo.nvim",
-			rocks = { "openssl", "lua-http-parser" },
-			config = function()
-				require("telescope").load_extension("arecibo")
-				require("telescope").setup({
-					extensions = {
+		-- use({
+		-- 	"nvim-telescope/telescope-arecibo.nvim",
+		-- 	-- rocks = { "openssl", "lua-http-parser" },
+		-- 	config = function()
+		-- 		require("telescope").load_extension("arecibo")
+		-- 		require("telescope").setup({
+		-- 			extensions = {
 
-						arecibo = {
-							["selected_engine"] = "google",
-							["url_open_command"] = "xdg-open",
-							["show_http_headers"] = false,
-							["show_domain_icons"] = false,
-						},
-					},
-				})
-			end,
-			after = "telescope.nvim",
-		})
+		-- 				arecibo = {
+		-- 					["selected_engine"] = "google",
+		-- 					["url_open_command"] = "xdg-open",
+		-- 					["show_http_headers"] = false,
+		-- 					["show_domain_icons"] = false,
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	after = "telescope.nvim",
+		-- })
 
 		-- Marks Navigation
 		use({
-			"chentoast/marks.nvim",
+			"theprimeagen/harpoon",
 			config = function()
-				require("user.marks-config")
+				require("dev.harpoon-config")
 			end,
 			event = "BufWinEnter",
 		})
@@ -505,9 +511,15 @@ if present then
 			command = "Firenvim",
 		})
 
-		use({ "ThePrimeagen/vim-be-good" })
+		use({
+			"ThePrimeagen/vim-be-good",
+			event = "BufWinEnter",
+		})
 
-		use({ "simnalamburt/vim-mundo" })
+		use({
+			"simnalamburt/vim-mundo",
+			event = "BufWinEnter",
+		})
 
 		-- use({
 		-- 	"p00f/cphelper.nvim",

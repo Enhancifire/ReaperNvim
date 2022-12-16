@@ -169,6 +169,8 @@ local nmaps = {
 		s = { btop, "Open System Monitor" },
 		p = { pythonTerm, "Open Python Terminal" },
 		u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
+		z = { ":ZenMode<CR>", "Zen Mode" },
+		w = { ":Twilight<CR>", "Toggle Twilight" },
 	},
 
 	u = {
@@ -188,13 +190,6 @@ local nmaps = {
 		c = { ":close <CR>", "Close Window" },
 		s = { ":sp <CR>", "Split Horizontally" },
 		v = { ":vs <CR>", "Split Vertically" },
-	},
-
-	-- Zen Mode
-	z = {
-		name = "Focus Mode",
-		z = { ":ZenMode<CR>", "Zen Mode" },
-		t = { ":Twilight<CR>", "Toggle Twilight" },
 	},
 }
 

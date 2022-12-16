@@ -31,6 +31,7 @@ require("user.hydra-config")
 require("user.autofire")
 
 -- Intellisense -----------------------------------------
+require("tsconfig")
 require("lsp")
 
 -- Appearance -------------------------------------------
