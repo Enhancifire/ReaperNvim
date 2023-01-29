@@ -32,7 +32,7 @@ require("nvim-tree").setup({
 	disable_netrw = true,
 	view = {
 		adaptive_size = true,
-		width = 30,
+		width = 20,
 		hide_root_folder = false,
 		side = "left",
 		mappings = {

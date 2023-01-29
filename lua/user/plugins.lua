@@ -192,7 +192,10 @@ if present then
 			event = "BufWinEnter",
 		})
 		use({ "cstrap/flask-snippets" })
-		use({ "L3MON4D3/LuaSnip" })
+		use({
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
+		})
 
 		-- CSS Color Preview
 		use({
@@ -331,7 +334,7 @@ if present then
 
 		-- Fancy UI
 
-		use({ "MunifTanjim/nui.nvim" })
+		-- use({ "MunifTanjim/nui.nvim" })
 
 		use({
 			"stevearc/dressing.nvim",
@@ -341,14 +344,14 @@ if present then
 			end,
 		})
 
-		use({
-			"folke/noice.nvim",
-			event = "VimEnter",
-
-			config = function()
-				require("appearance.ui.noice-config")
-			end,
-		})
+		-- use({
+		-- 	"folke/noice.nvim",
+		-- 	event = "VimEnter",
+		--
+		-- 	config = function()
+		-- 		require("appearance.ui.noice-config")
+		-- 	end,
+		-- })
 
 		use({
 			"rcarriga/nvim-notify",
