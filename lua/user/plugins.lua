@@ -34,6 +34,12 @@ if present then
 			end,
 		})
 
+		-- FZF: Searching through the files
+		use({
+			"junegunn/fzf.vim",
+			event = "BufWinEnter",
+		})
+
 		use({ "rcarriga/nvim-dap-ui" })
 
 		use({ "mfussenegger/nvim-dap-python" })
@@ -212,14 +218,14 @@ if present then
 			config = "require('telescope-config')",
 		})
 
-		use({
-			"nvim-telescope/telescope-fzf-native.nvim",
-			run = "make",
-			config = function()
-				require("telescope").load_extension("fzf")
-			end,
-			after = "telescope.nvim",
-		})
+		-- use({
+		-- 	"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	run = "make",
+		-- 	config = function()
+		-- 		require("telescope").load_extension("fzf")
+		-- 	end,
+		-- 	after = "telescope.nvim",
+		-- })
 
 		use({
 			"nvim-telescope/telescope-media-files.nvim",
@@ -299,7 +305,13 @@ if present then
 		})
 
 		-- Dashboard
-		use("glepnir/dashboard-nvim")
+		use({
+			"glepnir/dashboard-nvim",
+			event = "VimEnter",
+			config = function ()
+				require('appearance.dashboard')
+			end
+		})
 
 		-- Git Signs
 		use({
@@ -453,16 +465,9 @@ if present then
 
 		-- Almighty Github Copilot
 		--[[ use { 'github/copilot.vim' } ]]
-
 		-- Wakatime: Keeping Track of your Coding Progress
 		use({
 			"wakatime/vim-wakatime",
-		})
-
-		-- FZF: Searching through the files
-		use({
-			"junegunn/fzf.vim",
-			event = "BufWinEnter",
 		})
 
 		use({
@@ -512,6 +517,7 @@ if present then
 				vim.fn["firenvim#install"](0)
 			end,
 			command = "Firenvim",
+			config = "require('dev.firenvim-config')",
 		})
 
 		use({
