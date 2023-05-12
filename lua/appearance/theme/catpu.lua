@@ -6,10 +6,10 @@ catpuccin.setup({
 		shade = "dark",
 		percentage = 0.15,
 	},
-	transparent_background = false,
+	transparent_background = true,
 	term_colors = true,
 	compile = {
-		enabled = false,
+		enabled = true,
 		path = vim.fn.stdpath("cache") .. "/catppuccin",
 		suffix = "_compiled",
 	},
@@ -17,12 +17,12 @@ catpuccin.setup({
 		comments = { "italic" },
 		conditionals = { "italic" },
 		loops = {},
-		functions = {},
+		functions = { "bold" },
 		keywords = {},
 		strings = {},
 		variables = {},
 		numbers = {},
-		booleans = {},
+		booleans = { "italic" },
 		properties = {},
 		types = {},
 		operators = {},
@@ -44,13 +44,17 @@ catpuccin.setup({
 				information = { "underline" },
 			},
 		},
-		coc_nvim = false,
+		coc_nvim = true,
 		lsp_trouble = false,
 		cmp = true,
-		lsp_saga = false,
+		lsp_saga = true,
 		gitgutter = false,
 		gitsigns = true,
-		telescope = true,
+		telescope = {
+		  enabled = true,
+		  transparent_panel = true,
+		  transparent_background = true,
+		},
 		nvimtree = {
 			enabled = true,
 			show_root = true,
@@ -68,7 +72,7 @@ catpuccin.setup({
 		which_key = true,
 		indent_blankline = {
 			enabled = true,
-			colored_indent_levels = false,
+			colored_indent_levels = true,
 		},
 		dashboard = true,
 		neogit = true,
@@ -86,4 +90,4 @@ catpuccin.setup({
 		mini = false,
 	},
 })
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha

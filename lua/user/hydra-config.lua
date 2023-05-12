@@ -6,7 +6,7 @@ Hydra({
 	name = "Change / Resize Window",
 	hint = chwindow_hint,
 	mode = { "n" },
-	body = "<C-w>",
+	body = "<C-t>",
 	config = {
 		-- color = "pink",
 		invoke_on_body = true,

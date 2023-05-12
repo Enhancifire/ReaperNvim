@@ -169,8 +169,6 @@ local nmaps = {
 		s = { btop, "Open System Monitor" },
 		p = { pythonTerm, "Open Python Terminal" },
 		u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
-		z = { ":ZenMode<CR>", "Zen Mode" },
-		w = { ":Twilight<CR>", "Toggle Twilight" },
 	},
 
 	u = {

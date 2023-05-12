@@ -1,23 +1,33 @@
 require("nvim-tree").setup({
+	filters = {
+		dotfiles = false,
+	},
 	respect_buf_cwd = false,
 	update_focused_file = {
 		enable = true,
 	},
 	renderer = {
+		-- highlight_opened_files = "none",
 		indent_markers = {
 			enable = true,
-			icons = {
-				corner = "└ ",
-				edge = "│ ",
-				item = "│ ",
-				none = "  ",
-			},
 		},
+		icons = {
+			show = {
+				file = true,
+				folder = true,
+				folder_arrow = true,
+				git = false,
+			}
+
+		}
 	},
 	-- open_on_setup = true,
 	git = {
 		enable = true,
 		ignore = false,
+	},
+	filesystem_watchers = {
+		enable = true,
 	},
 	diagnostics = {
 		enable = true,
@@ -30,6 +40,7 @@ require("nvim-tree").setup({
 	},
 	hijack_netrw = true,
 	disable_netrw = true,
+	hijack_cursor = true,
 	view = {
 		adaptive_size = true,
 		width = 20,

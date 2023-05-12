@@ -23,16 +23,124 @@ if present then
 	local init_options = packer_init()
 	packer.init(init_options)
 	packer.startup(function()
-		-- The One Plugin To Rule Them All
-		use({ "wbthomason/packer.nvim" })
-
-		-- Debugger
+		-- Packer can manage itself
 		use({
-			"mfussenegger/nvim-dap",
-			config = function()
-				require("dev.debugger")
-			end,
+			"wbthomason/packer.nvim"
 		})
+
+		-- Help with Nvim Lua
+		use({
+			"tjdevries/nlua.nvim"
+		})
+
+
+		-- Debugger and Debugging
+		use({
+			{
+				"mfussenegger/nvim-dap",
+				config = function()
+					require("dev.debugger")
+				end,
+			},
+			{
+				"rcarriga/nvim-dap-ui"
+			},
+			{
+				"mfussenegger/nvim-dap-python"
+			},
+
+			{
+				"theHamsta/nvim-dap-virtual-text"
+			},
+
+			{
+				"nvim-telescope/telescope-dap.nvim",
+				after = "telescope.nvim",
+				config = function()
+					require("telescope").load_extension("dap")
+				end,
+			},
+		})
+
+
+
+		-- Mason, Null LS and LSP
+		use({
+			{
+				"williamboman/mason.nvim"
+			},
+			{
+				"williamboman/mason-lspconfig.nvim"
+			},
+			{
+				"jayp0521/mason-null-ls.nvim"
+			},
+		})
+
+		use({
+			{
+				"neovim/nvim-lspconfig"
+			},
+			{
+				"jose-elias-alvarez/null-ls.nvim",
+				config = "require('lsp.null-ls-config')",
+			},
+
+
+			{
+				"tami5/lspsaga.nvim",
+				branch = "nvim6.0",
+			},
+
+			{ "onsails/lspkind-nvim" },
+			{
+				"j-hui/fidget.nvim",
+				config = "require('fidget').setup()",
+			},
+		})
+
+		-- Everything CMP
+		use({
+			{
+				"hrsh7th/nvim-cmp",
+				event = "BufWinEnter",
+				config = "require('lsp/cmp-config')",
+			},
+
+
+			{
+				"hrsh7th/cmp-nvim-lsp"
+			},
+			{
+				"hrsh7th/cmp-buffer",
+				after = "nvim-cmp",
+			},
+			{
+				"hrsh7th/cmp-nvim-lua",
+				after = "nvim-cmp",
+			},
+			{
+				"hrsh7th/cmp-path",
+				after = "nvim-cmp",
+			},
+			{
+				"hrsh7th/cmp-cmdline",
+				after = "nvim-cmp",
+			},
+			{
+				"hrsh7th/cmp-vsnip",
+				after = "nvim-cmp",
+			},
+			{
+				"hrsh7th/vim-vsnip",
+				after = "nvim-cmp",
+			},
+			{
+				"saadparwaiz1/cmp_luasnip",
+				after = "nvim-cmp",
+			},
+		})
+
 
 		-- FZF: Searching through the files
 		use({
@@ -40,102 +148,38 @@ if present then
 			event = "BufWinEnter",
 		})
 
-		use({ "rcarriga/nvim-dap-ui" })
-
-		use({ "mfussenegger/nvim-dap-python" })
-
-		use({ "theHamsta/nvim-dap-virtual-text" })
-
-		use({
-			"nvim-telescope/telescope-dap.nvim",
-			after = "telescope.nvim",
-			config = function()
-				require("telescope").load_extension("dap")
-			end,
-		})
-
-		use({ "tjdevries/nlua.nvim" })
-
-		-- Mason, Null LS and LSP
-		use({ "williamboman/mason.nvim" })
-		use({ "williamboman/mason-lspconfig.nvim" })
-		use({ "neovim/nvim-lspconfig" })
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			config = "require('lsp.null-ls-config')",
-		})
-
-		use({
-			"j-hui/fidget.nvim",
-			config = "require('fidget').setup()",
-		})
-		use({ "jayp0521/mason-null-ls.nvim" })
-
-		use({
-			"tami5/lspsaga.nvim",
-			branch = "nvim6.0",
-		})
-
-		use({
-			"hrsh7th/nvim-cmp",
-			event = "BufWinEnter",
-			config = "require('lsp/cmp-config')",
-		})
-		use({ "hrsh7th/cmp-nvim-lsp" })
-		use({
-			"hrsh7th/cmp-buffer",
-			after = "nvim-cmp",
-		})
-		use({
-			"hrsh7th/cmp-nvim-lua",
-			after = "nvim-cmp",
-		})
-		use({
-			"hrsh7th/cmp-path",
-			after = "nvim-cmp",
-		})
-		use({
-			"hrsh7th/cmp-cmdline",
-			after = "nvim-cmp",
-		})
-		use({
-			"hrsh7th/cmp-vsnip",
-			after = "nvim-cmp",
-		})
-		use({
-			"hrsh7th/vim-vsnip",
-			after = "nvim-cmp",
-		})
-		use({
-			"saadparwaiz1/cmp_luasnip",
-			after = "nvim-cmp",
-		})
-		use({ "onsails/lspkind-nvim" })
-
-		-- Hydra: For epic and quick vim usage
-		use({
-			"anuvyklack/hydra.nvim",
-			requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-		})
 
 		-- Treesitter: The Essential Part of Neovim PDE
 		use({
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate",
-			config = function()
-				require("tsconfig")
-			end,
+			{
+				"nvim-treesitter/nvim-treesitter",
+				run = ":TSUpdate",
+				config = function()
+					require("lsp.tsconfig")
+				end,
+			},
+
+			{
+				"nvim-treesitter/playground",
+				event = "BufRead",
+			},
 		})
 
+		-- Keybindings
 		use({
-			"nvim-treesitter/playground",
-			event = "BufRead",
+			-- WhichKey: Defining and Showing Hotkeys
+			{ "folke/which-key.nvim" },
+
+			-- Hydra: For epic and quick vim usage
+			{
+				"anuvyklack/hydra.nvim",
+				requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
+			},
+
+			-- Command Pallette
+			{ "mrjones2014/legendary.nvim" },
+
 		})
-
-		-- WhichKey: Defining and Showing Hotkeys
-		use({ "folke/which-key.nvim" })
-
-		use({ "mrjones2014/legendary.nvim" })
 
 		-- Flutter Development
 		use({
@@ -147,12 +191,16 @@ if present then
 
 		-- Dispatch: To Quickly Build
 		use({
-			"tpope/vim-dispatch",
-			opt = true,
-			cmd = { "Dispatch", "Make", "Focus", "Start" },
-			event = "BufWinEnter",
+			{
+				"tpope/vim-dispatch",
+				opt = true,
+				cmd = { "Dispatch", "Make", "Focus", "Start" },
+				event = "BufWinEnter",
+			},
+			{
+				"radenling/vim-dispatch-neovim"
+			},
 		})
-		use({ "radenling/vim-dispatch-neovim" })
 
 		use({
 			"olimorris/persisted.nvim",
@@ -277,12 +325,12 @@ if present then
 			event = "BufWinEnter",
 		})
 
-		-- Statusline
-		use({
-			"tamton-aquib/staline.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true },
-			-- config = "require('statline-config')"
-		})
+		-- -- Statusline
+		-- use({
+		-- 	"tamton-aquib/staline.nvim",
+		-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		-- 	-- config = "require('statline-config')"
+		-- })
 
 		-- Tabline
 		use({
@@ -308,7 +356,7 @@ if present then
 		use({
 			"glepnir/dashboard-nvim",
 			event = "VimEnter",
-			config = function ()
+			config = function()
 				require('appearance.dashboard')
 			end
 		})
@@ -369,21 +417,21 @@ if present then
 			"rcarriga/nvim-notify",
 		})
 
-		use({
-			"gorbit99/codewindow.nvim",
-			config = function()
-				require("appearance.ui.minimap")
-			end,
-			event = "BufWinEnter",
-		})
+		-- use({
+		-- 	"gorbit99/codewindow.nvim",
+		-- 	config = function()
+		-- 		require("appearance.ui.minimap")
+		-- 	end,
+		-- 	event = "BufWinEnter",
+		-- })
 
-		use({
-			"rainbowhxch/beacon.nvim",
-			config = function()
-				require("appearance.ui.flasher")
-			end,
-			event = "BufRead",
-		})
+		-- use({
+		-- 	"rainbowhxch/beacon.nvim",
+		-- 	config = function()
+		-- 		require("appearance.ui.flasher")
+		-- 	end,
+		-- 	event = "BufRead",
+		-- })
 
 		use({
 			"xiyaowong/nvim-transparent",
@@ -395,35 +443,35 @@ if present then
 		-- Themes
 		use({
 			{
-				"dracula/vim",
-				as = "dracula",
-			},
-			{
-				"ellisonleao/gruvbox.nvim",
+				"catppuccin/nvim",
+				as = "catppuccin",
 			},
 			{
 				"rose-pine/neovim",
 				as = "rose-pine",
 			},
 			{
-				"joshdick/onedark.vim",
-			},
-			{
 				"tiagovla/tokyodark.nvim",
 			},
-			{
-				"sainnhe/everforest",
-			},
-			{
-				"sainnhe/sonokai",
-			},
-			{
-				"sainnhe/gruvbox-material",
-			},
-			{
-				"catppuccin/nvim",
-				as = "catppuccin",
-			},
+			-- {
+			-- 	"dracula/vim",
+			-- 	as = "dracula",
+			-- },
+			-- {
+			-- 	"ellisonleao/gruvbox.nvim",
+			-- },
+			-- {
+			-- 	"joshdick/onedark.vim",
+			-- },
+			-- {
+			-- 	"sainnhe/everforest",
+			-- },
+			-- {
+			-- 	"sainnhe/sonokai",
+			-- },
+			-- {
+			-- 	"sainnhe/gruvbox-material",
+			-- },
 		})
 
 		-- Embedded Terminal
@@ -454,17 +502,20 @@ if present then
 		})
 
 		-- Hopper for Hopping through the Code
-		use({
-			"phaazon/hop.nvim",
-			branch = "v1", -- optional but strongly recommended
-			config = function()
-				require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-			end,
-			event = "BufWinEnter",
-		})
+		-- use({
+		-- 	"phaazon/hop.nvim",
+		-- 	branch = "v1", -- optional but strongly recommended
+		-- 	config = function()
+		-- 		require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+		-- 	end,
+		-- 	event = "BufWinEnter",
+		-- })
 
 		-- Almighty Github Copilot
-		--[[ use { 'github/copilot.vim' } ]]
+		use({
+			"github/copilot.vim",
+		})
+
 		-- Wakatime: Keeping Track of your Coding Progress
 		use({
 			"wakatime/vim-wakatime",
@@ -478,16 +529,18 @@ if present then
 			event = "BufWinEnter",
 		})
 
+
+
 		use({
 			"folke/trouble.nvim",
 			config = "require('lsp.trouble-config')",
 			-- event = "BufWinEnter",
 		})
 
-		use({
-			"sotte/presenting.vim",
-			event = "BufRead",
-		})
+		-- use({
+		-- 	"sotte/presenting.vim",
+		-- 	event = "BufRead",
+		-- })
 
 		-- Code Structure Navigation
 		use({
@@ -497,43 +550,49 @@ if present then
 		})
 
 		-- Zen/Presentation Mode
-		use({
-			{
-				"folke/twilight.nvim",
-				config = "require('appearance.zen.twilight-config')",
-				event = "BufWinEnter",
-			},
-			{
-				"folke/zen-mode.nvim",
-				config = "require('appearance.zen.mode')",
-				event = "BufWinEnter",
-			},
-		})
+		-- use({
+		-- 	{
+		-- 		"folke/twilight.nvim",
+		-- 		config = "require('appearance.zen.twilight-config')",
+		-- 		event = "BufWinEnter",
+		-- 	},
+		-- 	{
+		-- 		"folke/zen-mode.nvim",
+		-- 		config = "require('appearance.zen.mode')",
+		-- 		event = "BufWinEnter",
+		-- 	},
+		-- })
 
-		-- Firenvim
-		use({
-			"glacambre/firenvim",
-			run = function()
-				vim.fn["firenvim#install"](0)
-			end,
-			command = "Firenvim",
-			config = "require('dev.firenvim-config')",
-		})
-
-		use({
-			"ThePrimeagen/vim-be-good",
-			event = "BufWinEnter",
-		})
 
 		use({
 			"simnalamburt/vim-mundo",
 			event = "BufWinEnter",
 		})
 
-		-- use({
-		-- 	"p00f/cphelper.nvim",
-		-- 	config = "require('dev.cph')",
-		-- 	event = "BufWinEnter",
-		-- })
+		use({
+			"aserowy/tmux.nvim",
+			config = function()
+				require("tmux").setup({
+					copy_sync = {
+						enable = true,
+						redirect_to_clipboard = true,
+					},
+					navigation = {
+						enable_default_keybindings = true,
+					},
+					resize = {
+						enable_default_keybindings = true,
+					},
+					sync_clipboard = true,
+				})
+			end,
+		})
+
+		use({
+			"epwalsh/obsidian.nvim",
+			config = function()
+				require("notes.obsidian")
+			end,
+		})
 	end)
 end

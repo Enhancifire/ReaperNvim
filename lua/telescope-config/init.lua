@@ -2,18 +2,8 @@ local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 require("telescope").setup({
-	extensions = {
-		-- file_browser = {
-		--   theme = "tokyodark",
-		-- },
-		-- packer = {
-		--   theme = "tokyodark",
-		-- },
-		-- },
-	},
 	defaults = {
 		layout_config = {
-			-- prompt_position = "bottom",
 			horizontal = {
 				prompt_position = "top",
 				preview_width = 0.55,
@@ -37,17 +27,17 @@ require("telescope").setup({
 		entry_prefix = "  ",
 		initial_mode = "insert",
 		selection_strategy = "reset",
-		sorting_strategy = "descending",
+		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_ignore_patterns = {},
+		file_ignore_patterns = { "node_modules", "pycache" },
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		path_display = {},
+		path_display = { "truncate" },
 		winblend = 0,
 		border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		color_devicons = true,
-		use_less = true,
+		-- use_less = true,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -70,7 +60,6 @@ require("telescope").setup({
 			},
 		},
 	},
-
 	-- defaults = {
 	-- 	vimgrep_arguments = {
 	-- 		"rg",
@@ -101,7 +90,6 @@ require("telescope").setup({
 	-- 		height = 0.80,
 	-- 		preview_cutoff = 120,
 	-- 	},
-	-- 	file_sorter = require("telescope.sorters").get_fuzzy_file,
 	-- 	file_ignore_patterns = { "node_modules" },
 	-- 	generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 	-- 	path_display = { "truncate" },
