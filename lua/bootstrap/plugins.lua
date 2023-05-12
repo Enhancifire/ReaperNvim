@@ -511,10 +511,6 @@ if present then
 		-- 	event = "BufWinEnter",
 		-- })
 
-		-- Almighty Github Copilot
-		use({
-			"github/copilot.vim",
-		})
 
 		-- Wakatime: Keeping Track of your Coding Progress
 		use({
@@ -594,5 +590,12 @@ if present then
 				require("notes.obsidian")
 			end,
 		})
+
+		-- AI Tools
+		-- Almighty Github Copilot
+		use({
+			"github/copilot.vim",
+		})
+
 	end)
 end

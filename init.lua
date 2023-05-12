@@ -7,6 +7,9 @@ require("user")
 -- Intellisense -----------------------------------------
 require("lsp")
 
+-- AI Tools
+require("ai")
+
 -- Appearance -------------------------------------------
 require("appearance")
 
@@ -15,3 +18,5 @@ require("system")
 
 -- Notifications ----------------------------------------
 require("notifications")
+
+
