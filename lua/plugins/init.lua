@@ -204,7 +204,7 @@ local plugins = {
 	-- CSS Color Preview
 	{
 		"uga-rosa/ccc.nvim",
-		init = function() require('dev.colorizer-config') end,
+		config = {},
 	},
 
 	-- Telescope
@@ -396,32 +396,34 @@ local plugins = {
 		end,
 	},
 
-	-- Embedded Terminal
-	{
-		"akinsho/toggleterm.nvim",
-		config = function() require('toggleterm-config') end,
-	},
-
 	-- Comments
 	{
 		"numToStr/Comment.nvim",
-		event = "BufWinEnter",
-		config = function()
-			require("dev.comment-config")
-		end,
+		config = {
+			opleader = {
+				-- Line-comment Keymap
+				line = "gc",
+				-- Block-comment Beymap
+				block = "gb",
+			},
+			mappings = {
+				basic = true,
+				extra = true,
+			},
+			pre_hook = nil,
+			post_hook = nil,
+			ignore = nil,
+		},
 	},
 
 	-- Autopairs
-	-- (
-	--   "windwp/nvim-autopairs",
-	--   wants = "nvim-treesitter",
-	--   module = {
-	--     "nvim-autopairs.completion.cmp",
-	--     "nvim-autopairs",
-	--   },
-	--   config = "require('lsp.autopairs-config')",
-	--   dependencies = {"nvim-cmp"},
-	-- },
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require('lsp.autopairs-config')
+		end,
+		dependencies = { "nvim-treesitter", "nvim-cmp" },
+	},
 
 	-- Hopper for Hopping through the Code
 	-- ({

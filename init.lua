@@ -15,8 +15,3 @@ require("appearance")
 
 -- System Functions -------------------------------------
 require("system")
-
--- Notifications ----------------------------------------
-require("notifications")
-
-
