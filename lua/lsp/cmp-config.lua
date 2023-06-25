@@ -7,6 +7,8 @@ local ls = require("luasnip")
 
 local types = require("luasnip.util.types")
 
+
+
 -- Luasnip Section
 luasnip.config.set_config({
 	history = true,
@@ -49,6 +51,33 @@ end)
 
 -- Cmp Section
 lspkind.init()
+local cmp_kinds = {
+	Text = '  ',
+	Method = '  ',
+	Function = '  ',
+	Constructor = '  ',
+	Field = '  ',
+	Variable = '  ',
+	Class = '  ',
+	Interface = '  ',
+	Module = '  ',
+	Property = '  ',
+	Unit = '  ',
+	Value = '  ',
+	Enum = '  ',
+	Keyword = '  ',
+	Snippet = '  ',
+	Color = '  ',
+	File = '  ',
+	Reference = '  ',
+	Folder = '  ',
+	EnumMember = '  ',
+	Constant = '  ',
+	Struct = '  ',
+	Event = '  ',
+	Operator = '  ',
+	TypeParameter = '  ',
+}
 
 cmp.setup({
 	snippet = {
@@ -60,7 +89,7 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-y>"] = cmp.config.disable,                   -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
@@ -83,12 +112,13 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "copilot" },
 		{ name = "path" },
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "buffer",  keyword_length = 5 },
 	}),
-
 	formatting = {
+		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
 			with_text = false,
+			ellipsis_char = ".....",
 			menu = {
 				buffer = "[BUF]",
 				copilot = "[COP]",
@@ -99,7 +129,6 @@ cmp.setup({
 			},
 		}),
 	},
-
 	experimental = {
 		native_menu = false,
 		ghost_text = true,
