@@ -236,6 +236,12 @@ if present then
 			config = "require('dev.tree')",
 		})
 
+		-- Oil.Nvim
+		use({
+			"stevearc/oil.nvim",
+			config = "require('dev.oil-config')",
+		})
+
 		-- Snippets
 		use({
 			"honza/vim-snippets",
@@ -596,6 +602,5 @@ if present then
 		use({
 			"github/copilot.vim",
 		})
-
 	end)
 end

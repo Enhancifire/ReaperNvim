@@ -1,9 +1,12 @@
 require("rose-pine").setup({
-	dark_variant = "base",
+	variant = "auto",
+	dark_variant = "main",
 	bold_vert_split = true,
 	disable_background = false,
-	groups = {
-		background = "base",
-		panel = "surface",
-	},
+	disable_float_background = false,
+	disable_italics = false,
+	-- groups = {
+	-- 	background = "base",
+	-- 	panel = "surface",
+	-- },
 })
