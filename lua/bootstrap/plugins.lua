@@ -178,7 +178,7 @@ local plugins = {
 	-- })
 
 	-- Checking the Starup Time for Neovim
-	-- { "tweekmonster/startuptime.vim" },
+	{ "tweekmonster/startuptime.vim" },
 
 	-- For Markdown Previews
 	-- {
