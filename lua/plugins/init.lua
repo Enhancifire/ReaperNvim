@@ -373,10 +373,6 @@ local plugins = {
 	-- 	end,
 	-- })
 
-	{
-		"rcarriga/nvim-notify",
-	},
-
 	-- ({
 	-- 	"gorbit99/codewindow.nvim",
 	-- 	config = function()
