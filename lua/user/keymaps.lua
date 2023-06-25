@@ -3,7 +3,6 @@ local map = vim.api.nvim_set_keymap
 
 -- Set leader
 map("n", "<Space>", "<NOP>", opts)
-vim.g.mapleader = " "
 
 local function nkeymap(key, exec)
 	map("n", key, exec, opts)
