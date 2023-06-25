@@ -16,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-local plugins = require("bootstrap.plugins")
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup("plugins", opts)
