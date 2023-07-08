@@ -4,12 +4,12 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			dim_inactive = {
-				enabled = false,
+				enabled = true,
 				shade = "dark",
 				percentage = 0.15,
 			},
-			transparent_background = false,
-			term_colors = true,
+			transparent_background = true,
+			term_colors = false,
 			compile = {
 				enabled = true,
 				path = vim.fn.stdpath("cache") .. "/catppuccin",

@@ -39,12 +39,8 @@ nkeymap("gt", ":Telescope lsp_type_definitions<cr>")
 nkeymap("<C-u>", "<C-u>zz")
 nkeymap("<C-d>", "<C-d>zz")
 
-nkeymap("gs", ":HopLine<CR>")
-
 nkeymap("<C-p>", ":Telescope find_files<CR>")
 nkeymap("<C-;>", ":TroubleToggle<CR>")
-nkeymap("<C-.>", ":Legendary<CR>")
-nkeymap("<C-g>", ":Rg<CR>")
 
 nkeymap("n", "nzzzv")
 nkeymap("N", "Nzzzv")

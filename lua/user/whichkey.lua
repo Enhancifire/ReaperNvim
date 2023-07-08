@@ -74,7 +74,7 @@ local nmaps = {
 	f = {
 		name = "Files",
 		f = { ":Telescope find_files<CR>", "Find Files" },
-		g = { ":Rg<CR>", "Live Grep" },
+		g = { ":Telescope live_grep<CR>", "Live Grep" },
 	},
 
 	-- Git
