@@ -4,11 +4,11 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			dim_inactive = {
-				enabled = true,
+				enabled = false,
 				shade = "dark",
 				percentage = 0.15,
 			},
-			transparent_background = true,
+			transparent_background = false,
 			term_colors = false,
 			compile = {
 				enabled = true,

@@ -13,4 +13,4 @@ require("appearance.tabline-config")
 --   - Gruvbox Material
 --   - Catppuccin
 
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme rose-pine")
