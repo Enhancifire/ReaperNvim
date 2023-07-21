@@ -342,6 +342,10 @@ local plugins = {
 		end,
 	},
 
+	{
+		"kdheepak/lazygit.nvim",
+	},
+
 	-- Appearance--
 	-- Indent Guides
 	{
