@@ -21,5 +21,4 @@ return {
 	-- {
 	-- 	"sainnhe/gruvbox-material",
 	-- },
-
 }
