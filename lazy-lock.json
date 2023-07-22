@@ -66,6 +66,7 @@
   "telescope-lazy.nvim": { "branch": "main", "commit": "62b325696f33e338a820abe623bebc92ebf1786b" },
   "telescope-media-files.nvim": { "branch": "master", "commit": "0826c7a730bc4d36068f7c85cf4c5b3fd9fb570a" },
   "telescope.nvim": { "branch": "master", "commit": "597a3cc889c1d16dc38ae4c61f9b542d5258815f" },
+  "tmux.nvim": { "branch": "main", "commit": "03e28fdaa2ef54b975ba1930f1e69b5e231dedc9" },
   "toggleterm.nvim": { "branch": "main", "commit": "00c13dccc78c09fa5da4c5edda990a363e75035e" },
   "tokyodark.nvim": { "branch": "master", "commit": "b44f0cac4ab00b25ba91905ff0f8d51b7473bbba" },
   "trouble.nvim": { "branch": "main", "commit": "20d1b30d6925213abece21d35858a16e11d1e9fc" },

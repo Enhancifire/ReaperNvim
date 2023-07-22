@@ -493,6 +493,12 @@ local plugins = {
 	--   event = "BufWinEnter",
 	-- },
 
+	{
+		"aserowy/tmux.nvim",
+		config = function()
+			require("dev.tmux")
+		end,
+	},
 	-- ({
 	--   "aserowy/tmux.nvim",
 	--   config = function()
