@@ -14,6 +14,10 @@ return {
 	},
 	{
 		"sainnhe/everforest",
+		config = function()
+		  vim.o.everforest_background = 'hard'
+		  vim.g.everforest_better_performance = true
+		end,
 	},
 	-- {
 	-- 	"sainnhe/sonokai",
