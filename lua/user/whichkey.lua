@@ -25,10 +25,10 @@ local toggle_float = function()
 	return float:toggle()
 end
 
-local toggle_lazygit = function()
-	local lazygit = Terminal:new({ direction = "float", cmd = "lazygit" })
-	return lazygit:toggle()
-end
+-- local toggle_lazygit = function()
+-- 	local lazygit = Terminal:new({ direction = "float", cmd = "lazygit" })
+-- 	return lazygit:toggle()
+-- end
 
 local pythonTerm = function()
 	local pyt = Terminal:new({ direction = "tab", cmd = "bpython", size = 30 })
@@ -81,7 +81,7 @@ local nmaps = {
 	g = {
 		name = "Git",
 		b = { "<cmd>lua require('telescope.builtin').git_branches()<cr>", "Branches" },
-		g = { toggle_lazygit, "Open Lazygit" },
+		g = { ":LazyGit<cr>", "Open Lazygit" },
 		s = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Status" },
 		c = { "<cmd>lua require('telescope.builtin').git_commits()<cr>", "Commits" },
 		t = { "<cmd>lua require('telescope.builtin').git_stash()<cr>", "Stash" },
@@ -94,6 +94,7 @@ local nmaps = {
 		c = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
 		h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags" },
 		t = { ":Telescope<CR>", "Telescope" },
+		l = { ":Lazy<CR>", "Open Lazy" },
 		m = { "<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages" },
 		r = {
 			name = "Reload",
@@ -105,7 +106,6 @@ local nmaps = {
 		},
 		p = {
 			name = "Configuration",
-			s = { ":PackerSync <CR>", "Packer Sync" },
 			p = { dotdir, "Open Personal Configuration" },
 		},
 	},
@@ -163,12 +163,10 @@ local nmaps = {
 	-- Toggle
 	t = {
 		name = "Toggle",
-		m = { ":lua require('codewindow').toggle_minimap()<CR>", "Toggle Minimap" },
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
 		f = { toggle_float, "Floating Terminal" },
-		s = { btop, "Open System Monitor" },
 		p = { pythonTerm, "Open Python Terminal" },
-		u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
+		-- u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
 	},
 
 	u = {

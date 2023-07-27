@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 -- syntax enable                           " Enables syntax highlighing
 vim.o.hidden = true
 vim.o.encoding = "utf-8"

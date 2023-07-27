@@ -39,7 +39,7 @@ nkeymap("gt", ":Telescope lsp_type_definitions<cr>")
 nkeymap("<C-u>", "<C-u>zz")
 nkeymap("<C-d>", "<C-d>zz")
 nkeymap("<C-p>", ":Telescope find_files<CR>")
-nkeymap("<C-;>", ":TroubleToggle<CR>")
+nkeymap("<C-\\>", ":TroubleToggle<CR>")
 
 nkeymap("<A-j>", ":lua require('tmux').move_bottom()<CR>")
 nkeymap("<A-k>", ":lua require('tmux').move_top()<CR>")
