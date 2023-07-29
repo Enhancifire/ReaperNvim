@@ -141,11 +141,11 @@ local nmaps = {
 		w = { "<Plug>VimwikiIndex<CR>", "Open Wiki" },
 	},
 
-	-- Project Management
-	p = {
-		name = "Project",
-		p = { ":Telescope projects<CR>", "Switch Projects" },
-	},
+	-- -- Project Management
+	-- p = {
+	-- 	name = "Project",
+	-- 	p = { ":Telescope projects<CR>", "Switch Projects" },
+	-- },
 
 	-- Quit
 	q = {

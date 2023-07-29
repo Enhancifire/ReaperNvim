@@ -7,5 +7,7 @@ require("indent_blankline").setup({
 		"dashboard",
 		"NvimTree",
 		"packer",
+		"alpha",
+		"lazy",
 	},
 })

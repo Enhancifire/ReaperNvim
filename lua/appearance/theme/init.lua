@@ -1,5 +1,4 @@
 -- Setting the statusline and bufferline
-require("appearance.galaxyconf")
 require("appearance.tabline-config")
 
 -- Available Themes:

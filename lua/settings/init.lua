@@ -40,3 +40,5 @@ vim.wo.signcolumn = "yes"
 vim.o.swapfile = false
 vim.g.undofile = true
 vim.g.undodir = "~/.code/undo"
+vim.opt.laststatus = 3
+vim.o.termguicolors = true
