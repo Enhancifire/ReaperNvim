@@ -6,7 +6,7 @@ configs.setup = {
 		"python",
 		"bash",
 		"dart",
-		"lua",
+		-- "lua",
 		"json",
 		"yaml",
 		"html",
