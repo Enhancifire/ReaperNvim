@@ -265,13 +265,13 @@ local plugins = {
 		end,
 	},
 
-	-- Neogit: A Magit Clone
-	{
-		"TimUntersberger/neogit",
-		config = function()
-			require("dev.git")
-		end,
-	},
+	-- -- Neogit: A Magit Clone
+	-- {
+	-- 	"TimUntersberger/neogit",
+	-- 	config = function()
+	-- 		require("dev.git")
+	-- 	end,
+	-- },
 
 	{
 		"kdheepak/lazygit.nvim",

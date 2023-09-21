@@ -8,8 +8,8 @@ return {
 				shade = "dark",
 				percentage = 0.15,
 			},
-			transparent_background = false,
-			term_colors = false,
+			transparent_background = true,
+			term_colors = true,
 			compile = {
 				enabled = true,
 				path = vim.fn.stdpath("cache") .. "/catppuccin",
