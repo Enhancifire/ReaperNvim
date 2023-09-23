@@ -36,6 +36,24 @@ configs.setup = {
 			node_decremental = "grm",
 		},
 	},
+	textobjects = {
+		enable = true,
+		lookahead = true,
+		keymaps = {
+			["af"] = "@function.outer",
+			["if"] = "@function.inner",
+			["ac"] = "@class.outer",
+			["ic"] = "@class.inner",
+			["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" }
+		},
+		-- selection_modes = {
+		--   ["@parameter.outer"] = 'v',
+		--   ["@function.outer"] = 'v',
+		--   ["@function.outer"] = 'V',
+		-- },
+		include_surrounding_whitespace = true,
+	}
+
 }
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
