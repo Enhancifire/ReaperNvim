@@ -40,6 +40,15 @@ local btop = function()
 	return ht:toggle()
 end
 
+local toggleInlayHint = function()
+	if vim.lsp.inlay_hint then
+		print("Inlay Hint Toggled")
+		vim.lsp.inlay_hint(0, nil)
+	else
+		print("Inlay Hint not supported")
+	end
+end
+
 local nmaps = {
 	---- Buffers
 	b = {
@@ -166,6 +175,7 @@ local nmaps = {
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
 		f = { toggle_float, "Floating Terminal" },
 		p = { pythonTerm, "Open Python Terminal" },
+		h = { toggleInlayHint, "Toggle Inlay Hint" }
 		-- u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
 	},
 

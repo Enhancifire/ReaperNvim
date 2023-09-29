@@ -8,6 +8,7 @@ require("nvim-tree").setup({
 	},
 	renderer = {
 		-- highlight_opened_files = "none",
+		root_folder_label = false,
 		indent_markers = {
 			enable = true,
 		},
@@ -44,7 +45,7 @@ require("nvim-tree").setup({
 	view = {
 		adaptive_size = true,
 		width = 20,
-		hide_root_folder = false,
+		-- hide_root_folder = false,
 		side = "left",
 		-- mappings = {
 		-- 	custom_only = false,

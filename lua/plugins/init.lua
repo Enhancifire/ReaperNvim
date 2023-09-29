@@ -467,8 +467,18 @@ local plugins = {
 
 	-- AI Tools
 	-- Almighty Github Copilot
+	-- {
+	-- 	"github/copilot.vim",
+	-- },
+
 	{
-		"github/copilot.vim",
+		"Exafunction/codeium.vim",
+	},
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		config = function()
+		  require('appearance.rainbow')
+		end,
 	},
 }
 

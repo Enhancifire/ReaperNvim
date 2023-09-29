@@ -16,6 +16,10 @@ local function ikeymap(key, exec)
 	map("i", key, exec, opts)
 end
 
+local function xkeymap(key, exec)
+	map("x", key, exec, opts)
+end
+
 -- remap to ESC
 ikeymap("jk", "<ESC>")
 ikeymap("kj", "<ESC>")
@@ -48,3 +52,7 @@ nkeymap("<A-l>", ":lua require('tmux').move_right()<CR>")
 
 nkeymap("n", "nzzzv")
 nkeymap("N", "Nzzzv")
+
+xkeymap("<leader>p", "\"_dP")
+nkeymap("<leader>y", "\"+y")
+vkeymap("<leader>y", "\"+y")
