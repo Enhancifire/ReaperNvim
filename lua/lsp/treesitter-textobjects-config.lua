@@ -21,7 +21,6 @@ local configs = require("nvim-treesitter.configs")
 -- 		}
 -- 	}
 -- }
-print("TSConfig Loaded")
 configs.setup = {
 	textobjects = {
 		select = {

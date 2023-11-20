@@ -1,12 +1,11 @@
 local ts = require("nvim-treesitter")
-local configs = require("nvim-treesitter.configs")
 
-configs.setup = {
+require("nvim-treesitter.configs").setup = {
 	ensure_installed = {
 		"python",
 		"bash",
 		"dart",
-		-- "lua",
+		"go",
 		"json",
 		"yaml",
 		"html",
@@ -63,3 +62,10 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "Buf
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	end,
 })
+
+vim.cmd("TSEnable highlight")
+vim.cmd("TSEnable indent")
+vim.cmd("TSEnable rainbow")
+vim.cmd("TSEnable textobjects.move")
+vim.cmd("TSEnable textobjects.swap")
+vim.cmd("TSEnable textobjects.select")

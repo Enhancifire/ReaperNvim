@@ -1,5 +1,7 @@
 local wk = require("which-key")
 local legendary = require("legendary")
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
 
 local wopts = {
 	prefix = "<leader>",
@@ -133,12 +135,14 @@ local nmaps = {
 		q = { "<cmd>lua vim.lsp.diagnostic.setloclist()<CR>", "Show loclist" },
 	},
 
-	-- Context menu
-	m = {
-		name = "Context",
-		i = { ":FlutterEmulators<CR>", "Emulators" },
-		r = { ":FlutterRun<CR>", "Run Flutter App" },
-	},
+	-- -- Context menu
+	-- m = {
+	-- 	name = "Marks",
+	-- 	-- i = { ":FlutterEmulators<CR>", "Emulators" },
+	-- 	-- r = { ":FlutterRun<CR>", "Run Flutter App" },
+	-- },
+
+	m = { mark.add_file, "Add Mark" },
 
 	-- NvimTree
 	n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
@@ -175,13 +179,14 @@ local nmaps = {
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
 		f = { toggle_float, "Floating Terminal" },
 		p = { pythonTerm, "Open Python Terminal" },
-		h = { toggleInlayHint, "Toggle Inlay Hint" }
+		h = { toggleInlayHint, "Toggle Inlay Hint" },
+		m = { ui.toggle_quick_menu, "Toggle Harpoon window" },
 		-- u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
 	},
 
 	u = {
 		name = "UI",
-		o = { ":TransparentToggle<CR>", "Toggle Opacity" },
+		-- o = { ":TransparentToggle<CR>", "Toggle Opacity" },
 		c = { ":Telescope colorscheme<CR>", "Change Colorscheme" },
 	},
 
@@ -206,12 +211,12 @@ local vmaps = {
 	},
 }
 
-legendary.setup({
-	select_prompt = "Commands",
-	which_key = {
-		auto_register = true,
-	},
-})
+-- legendary.setup({
+-- 	select_prompt = "Commands",
+-- 	which_key = {
+-- 		auto_register = true,
+-- 	},
+-- })
 
 wk.register(nmaps, wopts)
 wk.register(vmaps, vopts)

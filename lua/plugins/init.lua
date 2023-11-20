@@ -43,8 +43,8 @@ local plugins = {
 	},
 
 	{
-		"tami5/lspsaga.nvim",
-		branch = "nvim6.0",
+		"nvimdev/lspsaga.nvim",
+		-- branch = "nvim6.0",
 	},
 
 	{ "onsails/lspkind-nvim" },
@@ -103,32 +103,7 @@ local plugins = {
 	},
 
 
-	-- Treesitter: The Essential Part of Neovim PDE
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		config = function()
-			require("lsp.treesitter-textobjects-config")
-		end,
-		ft = { "python", "lua", "javascript", "typescript", "dart", "html", "css", "cpp", "c", "json", "yaml" },
-		dependencies = { "nvim-treesitter" },
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			require("lsp.treesitter-config")
-			-- require("lsp.treesitter-textobjects-config")
-		end,
-		-- dependencies = { "nvim-treesitter-textobjects" },
-	},
-	{
-		"nvim-treesitter/playground",
-		event = "BufRead",
-	},
-
-
 	-- Keybindings
-
 	-- WhichKey: Defining and Showing Hotkeys
 	{ "folke/which-key.nvim" },
 
@@ -298,13 +273,25 @@ local plugins = {
 
 	-- Fancy UI
 
-	-- ({ "MunifTanjim/nui.nvim" })
+	{ "MunifTanjim/nui.nvim" },
 
 	{
 		"stevearc/dressing.nvim",
 		event = "VimEnter",
 		config = function()
 			require("appearance.ui.dressing-config")
+		end,
+	},
+
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("appearance.ui.noice-config")
 		end,
 	},
 
@@ -333,12 +320,12 @@ local plugins = {
 	-- 	event = "BufRead",
 	-- })
 
-	{
-		"xiyaowong/nvim-transparent",
-		config = function()
-			require("appearance.ui.transparent_config")
-		end,
-	},
+	-- {
+	-- 	"xiyaowong/nvim-transparent",
+	-- 	config = function()
+	-- 		require("appearance.ui.transparent_config")
+	-- 	end,
+	-- },
 
 	-- Comments
 	{
@@ -477,7 +464,7 @@ local plugins = {
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		config = function()
-		  require('appearance.rainbow')
+			require('appearance.rainbow')
 		end,
 	},
 }

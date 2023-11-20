@@ -6,8 +6,6 @@ require("user")
 
 require("lsp")
 
-require("ai")
-
 require("appearance")
 
 require("system")
