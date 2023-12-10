@@ -25,7 +25,7 @@ return {
 			Yes_No = {
 				prompt =
 				"I have a question about this: $input\n\n Here is the code:\n```$ftype\n$sel```\n Answer if this is possible or not with a simple Yes or No",
-				input_label = " ",
+				input_label = "  ",
 
 			}
 
