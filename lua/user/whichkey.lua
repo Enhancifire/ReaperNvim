@@ -27,27 +27,9 @@ local toggle_float = function()
 	return float:toggle()
 end
 
--- local toggle_lazygit = function()
--- 	local lazygit = Terminal:new({ direction = "float", cmd = "lazygit" })
--- 	return lazygit:toggle()
--- end
-
-local pythonTerm = function()
-	local pyt = Terminal:new({ direction = "tab", cmd = "bpython", size = 30 })
-	return pyt:toggle()
-end
-
-local btop = function()
-	local ht = Terminal:new({ direction = "float", cmd = "btop --utf-force" })
-	return ht:toggle()
-end
-
 local toggleInlayHint = function()
 	if vim.lsp.inlay_hint then
-		print("Inlay Hint Toggled")
 		vim.lsp.inlay_hint(0, nil)
-	else
-		print("Inlay Hint not supported")
 	end
 end
 
@@ -84,8 +66,6 @@ local nmaps = {
 	-- Files
 	f = {
 		name = "Files",
-		-- f = { ":Telescope find_files<CR>", "Find Files" },
-		-- g = { ":Telescope live_grep<CR>", "Live Grep" },
 	},
 
 	-- Git
@@ -107,18 +87,6 @@ local nmaps = {
 		t = { ":Telescope<CR>", "Telescope" },
 		l = { ":Lazy<CR>", "Open Lazy" },
 		m = { "<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages" },
-		-- r = {
-		-- 	name = "Reload",
-		-- 	r = { ":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR>", "Source configuration" },
-		-- 	R = {
-		-- 		":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR> :PackerSync <CR>",
-		-- 		"Source and install plugins",
-		-- 	},
-		-- },
-		p = {
-			name = "Configuration",
-			p = { dotdir, "Open Personal Configuration" },
-		},
 	},
 
 	-- LSP
@@ -134,13 +102,6 @@ local nmaps = {
 		e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show line diagnostics" },
 		q = { "<cmd>lua vim.lsp.diagnostic.setloclist()<CR>", "Show loclist" },
 	},
-
-	-- -- Context menu
-	-- m = {
-	-- 	name = "Marks",
-	-- 	-- i = { ":FlutterEmulators<CR>", "Emulators" },
-	-- 	-- r = { ":FlutterRun<CR>", "Run Flutter App" },
-	-- },
 
 	m = { mark.add_file, "Add Mark" },
 
@@ -167,27 +128,11 @@ local nmaps = {
 		Q = { ":wq<cr>", "Save and Quit" },
 	},
 
-	-- Reload
-	r = {
-		name = "Reload",
-		s = { "<cmd>source ~/.config/nvim/lua/snippets/init.lua<CR>", "Reload Snippets" },
-	},
-
 	-- Toggle
 	t = {
 		name = "Toggle",
 		t = { ":ToggleTerm<CR>", "Open Terminal" },
-		f = { toggle_float, "Floating Terminal" },
-		p = { pythonTerm, "Open Python Terminal" },
 		h = { toggleInlayHint, "Toggle Inlay Hint" },
-		m = { ui.toggle_quick_menu, "Toggle Harpoon window" },
-		-- u = { ":MundoToggle<CR>", "Toggle Undo Tree" },
-	},
-
-	u = {
-		name = "UI",
-		-- o = { ":TransparentToggle<CR>", "Toggle Opacity" },
-		c = { ":Telescope colorscheme<CR>", "Change Colorscheme" },
 	},
 
 	---- Windows

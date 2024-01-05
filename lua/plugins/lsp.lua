@@ -1,21 +1,35 @@
 return {
-	-- Mason, Null LS and LSP
+
 	{
-		"williamboman/mason.nvim"
-	},
-	{
-		"williamboman/mason-lspconfig.nvim"
-	},
-	{
-		"jayp0521/mason-null-ls.nvim"
+		"williamboman/mason.nvim",
+		lazy = false,
+		config = function()
+			require("mason").setup()
+		end,
 	},
 
 	{
-		"neovim/nvim-lspconfig"
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+		config = function()
+			local mason_lsp = require("mason-lspconfig")
+			mason_lsp.setup({
+				ensure_installed = { "pylsp", "lua_ls" },
+			})
+
+			mason_lsp.setup_handlers({
+				function(server_name) -- default handler (optional)
+					require("lspconfig")[server_name].setup({})
+				end,
+			})
+		end,
 	},
+
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function() require('lsp.null-ls-config') end,
+		"neovim/nvim-lspconfig",
+		lazy = false,
+		config = function()
+		end,
 	},
 
 	{
@@ -24,6 +38,7 @@ return {
 	},
 
 	{ "onsails/lspkind-nvim" },
+
 	{
 		"j-hui/fidget.nvim",
 		branch = "legacy",

@@ -117,6 +117,7 @@ return {
 			vim.keymap.set("n", "<C-p>", builtin.find_files, { noremap = true, silent = true, })
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { noremap = true, silent = true, })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { noremap = true, silent = true, })
+			vim.keymap.set("n", "<leader>uc", builtin.colorscheme, { noremap = true, silent = true, })
 		end,
 		dependencies = {
 			{
