@@ -65,22 +65,28 @@ db.setup({
 			"                             ⠙⣤                               ",
 			"                              ⠛⠂                              ",
 			"                                                              ",
+			"Time flows on,",
+			"Like a Mighty Dream,",
+			"Like an Unending Dream",
+			"",
 		},
 		-- week_header = {
 		-- 	enable = true,
 		-- },
 		shortcut = {
-		  { desc = "Last Session ", key = "l", action = ":SessionLoad" },
-		  { desc = "Find Files ", key = "f", action = ":Telescope find_files" },
-		  { desc = "Update ", key = "u", action = ":PackerSync" },
-		  -- { desc = "Tree ", key = "t", action = ":NvimTreeToggle" },
+			{ desc = "Find Files ",   key = "f", action = ":Telescope find_files" },
+		},
+		hide = {
+		  statusline,
+		  tabline,
+		  winbar,
 		},
 		packages = { enable = true },
 		mru = {
-		  limit = 5,
+			limit = 5,
 		},
 		footer = {
-		  [[Made with ♥️ by Faiz]],
+			[[Made with ♥️ by Faiz]],
 		},
 	},
 })

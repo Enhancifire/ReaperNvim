@@ -125,25 +125,7 @@ local plugins = {
 		-- event = "BufWinEnter",
 	},
 
-	-- Dashboard
-	{
-		"glepnir/dashboard-nvim",
-		event = "VimEnter",
-		config = function()
-			require('appearance.dashboard')
-		end
-	},
-
-
 	-- Appearance--
-	-- Indent Guides
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		-- event = "BufRead",
-		config = function()
-			require("appearance.indents")
-		end,
-	},
 
 	-- Fancy UI
 
