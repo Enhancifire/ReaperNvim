@@ -84,8 +84,8 @@ local nmaps = {
 	-- Files
 	f = {
 		name = "Files",
-		f = { ":Telescope find_files<CR>", "Find Files" },
-		g = { ":Telescope live_grep<CR>", "Live Grep" },
+		-- f = { ":Telescope find_files<CR>", "Find Files" },
+		-- g = { ":Telescope live_grep<CR>", "Live Grep" },
 	},
 
 	-- Git
@@ -107,14 +107,14 @@ local nmaps = {
 		t = { ":Telescope<CR>", "Telescope" },
 		l = { ":Lazy<CR>", "Open Lazy" },
 		m = { "<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages" },
-		r = {
-			name = "Reload",
-			r = { ":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR>", "Source configuration" },
-			R = {
-				":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR> :PackerSync <CR>",
-				"Source and install plugins",
-			},
-		},
+		-- r = {
+		-- 	name = "Reload",
+		-- 	r = { ":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR>", "Source configuration" },
+		-- 	R = {
+		-- 		":so C:\\Users\\Faiz\\AppData\\Local\\nvim\\init.lua <CR> :PackerSync <CR>",
+		-- 		"Source and install plugins",
+		-- 	},
+		-- },
 		p = {
 			name = "Configuration",
 			p = { dotdir, "Open Personal Configuration" },
