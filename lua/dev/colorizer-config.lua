@@ -1,2 +1,7 @@
 local ccc = require('ccc')
-ccc.setup()
+ccc.setup({
+	highlighter = {
+		auto_enable = true,
+		lsp = true,
+	}
+})

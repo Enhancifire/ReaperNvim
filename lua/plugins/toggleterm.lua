@@ -1,6 +1,6 @@
 return {
 	"akinsho/toggleterm.nvim",
-	config = {
+	opts = {
 		size = 30,
 		-- open_mapping = [[<c-\>]],
 		shade_filetypes = {},

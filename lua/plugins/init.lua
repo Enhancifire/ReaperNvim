@@ -180,7 +180,7 @@ local plugins = {
 
 	-- Snippets
 	"honza/vim-snippets",
-	"sirver/ultisnips",
+	-- "sirver/ultisnips",
 	"cstrap/flask-snippets",
 	"L3MON4D3/LuaSnip",
 	"rafamadriz/friendly-snippets",
@@ -188,7 +188,9 @@ local plugins = {
 	-- CSS Color Preview
 	{
 		"uga-rosa/ccc.nvim",
-		config = {},
+		config = function()
+			require("dev.colorizer-config")
+		end,
 	},
 
 	-- Telescope
@@ -320,17 +322,17 @@ local plugins = {
 	-- 	event = "BufRead",
 	-- })
 
-	-- {
-	-- 	"xiyaowong/nvim-transparent",
-	-- 	config = function()
-	-- 		require("appearance.ui.transparent_config")
-	-- 	end,
-	-- },
+	{
+		"xiyaowong/nvim-transparent",
+		config = function()
+			require("appearance.ui.transparent_config")
+		end,
+	},
 
 	-- Comments
 	{
 		"numToStr/Comment.nvim",
-		config = {
+		opts = {
 			opleader = {
 				-- Line-comment Keymap
 				line = "gc",

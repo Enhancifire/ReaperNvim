@@ -7,8 +7,12 @@ require("appearance.theme")
 -- Clean Seperator
 vim.api.nvim_command([[
 highlight WinSeparator guibg=None
-hi Normal guibg=NONE ctermbg=NONE
 ]])
+
+-- Transparent background
+-- vim.api.nvim_command([[
+-- hi Normal guibg=NONE ctermbg=NONE
+-- ]])
 
 -- Winbar
 vim.api.nvim_command([[]])
