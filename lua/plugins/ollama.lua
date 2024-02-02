@@ -19,8 +19,9 @@ return {
 
 	---@type Ollama.Config
 	opts = {
-		-- model = "mistral:latest",
-		model = "codellama:7b-code",
+		model = "mistral:latest",
+		-- model = "codellama:13b",
+		-- url = "http://127.0.0.1:11434",
 		prompts = {
 			Yes_No = {
 				prompt =
