@@ -16,8 +16,8 @@ local vopts = {
 	noremap = true,
 }
 
-local dapui = require("dapui")
 local toggle_dap_ui = function()
+	local dapui = require("dapui")
 	dapui.toggle()
 end
 
