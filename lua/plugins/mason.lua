@@ -9,7 +9,7 @@ return {
 			local null_ls = require("null-ls")
 			local masonnull = require("mason-null-ls")
 			masonnull.setup({
-				ensure_installed = { "stylua", "black" },
+				ensure_installed = { "black" },
 			})
 
 			local formatting = null_ls.builtins.formatting
