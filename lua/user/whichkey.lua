@@ -106,7 +106,7 @@ local nmaps = {
 	m = { mark.add_file, "Add Mark" },
 
 	-- NvimTree
-	n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
+	n = { ":Neotree toggle<CR>", "Toggle Neo-Tree" },
 
 	-- Opening Various Stuff
 	o = {

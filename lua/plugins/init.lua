@@ -4,7 +4,6 @@ local plugins = {
 		"folke/neodev.nvim",
 	},
 
-
 	-- Debugger and Debugging
 	{
 		"mfussenegger/nvim-dap",
@@ -241,13 +240,6 @@ local plugins = {
 	--   "simnalamburt/vim-mundo",
 	--   event = "BufWinEnter",
 	-- },
-
-	-- ({
-	--   "epwalsh/obsidian.nvim",
-	--   config = function()
-	--     require("notes.obsidian")
-	--   end,
-	-- })
 
 	{
 		"HiPhish/rainbow-delimiters.nvim",
