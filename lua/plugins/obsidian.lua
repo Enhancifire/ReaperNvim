@@ -12,11 +12,22 @@ return {
 				path = "~/Notes/",
 			}
 		},
+		notes_subdir = "/",
+		new_notes_location = "notes_subdir",
+		mappings = {
+			["gf"] = {
+				action = function()
+					return require("obsidian").util.gf_passthrough()
+				end,
+				opts = { noremap = false, expr = true, buffer = true },
+			},
+		},
 		daily_notes = {
 			folder = "07 - Daily",
-			date_format = "%y%m%d",
+			date_format = "%Y%m%d",
 			alias_format = "%Y-%m-%d",
 			default_tags = { "daily" },
+			template = "99 - Meta/00 - Templates/(TEMPLATE) Daily.md"
 		},
 		note_id_func = function(title)
 			local suffix = ""
@@ -41,17 +52,9 @@ return {
 
 		attachments = {
 			img_folder = "99 - Meta/01 - Attachments"
-		}
+		},
+		ui = {
+			enable = true,
+		},
 	},
-
-	-- config = function()
-	-- 	local obsidian = require("obsidian")
-	--
-	-- 	obsidian.setup({
-	-- 		dir = "",
-	-- 		daily_notes = {
-	-- 			folder = "daily",
-	-- 		},
-	-- 	})
-	-- end,
 }

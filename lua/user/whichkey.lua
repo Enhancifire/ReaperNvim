@@ -108,11 +108,14 @@ local nmaps = {
 	-- NvimTree
 	n = { ":Neotree toggle<CR>", "Toggle Neo-Tree" },
 
-	-- Opening Various Stuff
+	-- Obsidian
 	o = {
-		name = "open",
-		b = { ":enew<CR>", "Open new empty buffer" },
-		w = { "<Plug>VimwikiIndex<CR>", "Open Wiki" },
+		name = "Obsidian",
+		n = { ":ObsidianNew<CR>", "Create new obsidian note" },
+		s = { ":ObsidianSearch<CR>", "Search Obsidian Notes" },
+		o = { ":ObsidianOpen<CR>", "Open in Obsidian" },
+		t = { ":ObsidianTOC<CR>", "Table of Contents" },
+
 	},
 
 	-- -- Project Management
