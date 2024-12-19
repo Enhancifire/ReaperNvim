@@ -115,9 +115,9 @@ return {
 			})
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<C-p>", builtin.find_files, { noremap = true, silent = true, })
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { noremap = true, silent = true, })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { noremap = true, silent = true, })
-			vim.keymap.set("n", "<leader>uc", builtin.colorscheme, { noremap = true, silent = true, })
+			-- vim.keymap.set("n", "<leader>ff", builtin.find_files, { noremap = true, silent = true, })
+			-- vim.keymap.set("n", "<leader>fg", builtin.live_grep, { noremap = true, silent = true, })
+			-- vim.keymap.set("n", "<leader>uc", builtin.colorscheme, { noremap = true, silent = true, })
 		end,
 		dependencies = {
 			{
@@ -132,14 +132,14 @@ return {
 					require("telescope").load_extension("dap")
 				end,
 			},
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-				config = function()
-					require("telescope").load_extension("fzf")
-				end,
-				dependencies = { "telescope.nvim" },
-			},
+			-- {
+			-- 	"nvim-telescope/telescope-fzf-native.nvim",
+			-- 	build = "make",
+			-- 	config = function()
+			-- 		require("telescope").load_extension("fzf")
+			-- 	end,
+			-- 	dependencies = { "telescope.nvim" },
+			-- },
 			{
 				"nvim-telescope/telescope-media-files.nvim",
 				config = function()

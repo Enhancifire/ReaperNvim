@@ -3,120 +3,94 @@ local legendary = require("legendary")
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
-local wopts = {
-	prefix = "<leader>",
-	silent = true,
-	noremap = true,
-}
-
-local vopts = {
-	prefix = "<leader>",
-	mode = "v",
-	silent = true,
-	noremap = true,
-}
-
-local toggle_dap_ui = function()
-	local dapui = require("dapui")
-	dapui.toggle()
-end
-
-local Terminal = require("toggleterm.terminal").Terminal
-local toggle_float = function()
-	local float = Terminal:new({ direction = "float" })
-	return float:toggle()
-end
-
-local toggleInlayHint = function()
-	if vim.lsp.inlay_hint then
-		vim.lsp.inlay_hint(0, nil)
-	end
-end
 
 local nmaps = {
 	---- Buffers
-	b = {
-		name = "Buffer",
-		k = { ":bdelete<cr>", "Kill Buffer" },
-		l = { "<C-^>", "Last Buffer" },
-		b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "List Buffers" },
-	},
+	{ "<leader>b",  group = "Buffer" },
+	{ "<leader>bk", ":bdelete<cr>",                                           desc = "Kill Buffer" },
+	{ "<leader>bl", "<C-^>",                                                  desc = "Last Buffer" },
+	{ "<leader>bb", "<cmd>lua require('telescope.builtin').buffers()<cr>",    desc = "List Buffers" },
 
 	-- Code Actions
-	c = {
-		name = "Code",
-		s = { "<cmd>lua require('telescope.builtin').treesitter()<cr>", "Symbols" },
-		r = { ":lua vim.lsp.buf.rename()<CR>", "Rename Varialbe" },
-		o = { ":AerialToggle<CR>", "Toggle Code Outline" },
-		f = { ":lua vim.lsp.buf.format()<CR>", "Format Code" },
-	},
+	{ "<leader>c",  group = "Code" },
+	{ "<leader>cs", "<cmd>lua require('telescope.builtin').treesitter()<cr>", desc = "Symbols" },
+	{ "<leader>cr", ":lua vim.lsp.buf.rename()<CR>",                          desc = "Rename Variable" },
+	{ "<leader>co", ":AerialToggle<CR>",                                      desc = "Toggle Code Outline" },
+	{ "<leader>cf", ":lua vim.lsp.buf.format()<CR>",                          desc = "Format Code" },
 
-	-- Debug
-	d = {
-		name = "Debug",
-		t = { toggle_dap_ui, "Toggle Debugger" },
-		b = { ":DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
-		c = { ":DapContinue<CR>", "Continue/Run" },
-		r = { ":DapToggleRepl<CR>", "Toggle Repl" },
-		i = { ":DapStepInto<CR>", "Step Into" },
-		o = { ":DapStepOut<CR>", "Step Out" },
-		O = { ":DapStepOver<CR>", "Step Over" },
-	},
+	-- -- Debug
+	-- d = {
+	-- 	name = "Debug",
+	-- 	t = { toggle_dap_ui, "Toggle Debugger" },
+	-- 	b = { ":DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
+	-- 	c = { ":DapContinue<CR>", "Continue/Run" },
+	-- 	r = { ":DapToggleRepl<CR>", "Toggle Repl" },
+	-- 	i = { ":DapStepInto<CR>", "Step Into" },
+	-- 	o = { ":DapStepOut<CR>", "Step Out" },
+	-- 	O = { ":DapStepOver<CR>", "Step Over" },
+	-- },
 
 	-- Files
-	f = {
-		name = "Files",
+	{ "<leader>f",  group = "Files" },
+	{
+		"<leader>ff",
+		function()
+			local builtin = require("telescope.builtin")
+
+			builtin.find_files()
+		end,
+		desc = "Find Files"
+	},
+	{
+		"<leader>fg",
+		function()
+			local builtin = require("telescope.builtin")
+
+			builtin.live_grep()
+		end,
+		desc = "Grep Files"
 	},
 
 	-- Git
-	g = {
-		name = "Git",
-		b = { "<cmd>lua require('telescope.builtin').git_branches()<cr>", "Branches" },
-		g = { ":LazyGit<cr>", "Open Lazygit" },
-		s = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Status" },
-		c = { "<cmd>lua require('telescope.builtin').git_commits()<cr>", "Commits" },
-		t = { "<cmd>lua require('telescope.builtin').git_stash()<cr>", "Stash" },
-		f = { "<cmd>lua require('telescope.builtin').git_files()<cr>", "Files" },
-	},
+	{ "<leader>g",  group = "Git" },
+	{ "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<cr>",              desc = "Branches" },
+	{ "<leader>gg", ":LazyGit<cr>",                                                          desc = "Open Lazygit" },
+	{ "<leader>gs", "<cmd>lua require('telescope.builtin').git_status()<cr>",                desc = "Status" },
+	{ "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<cr>",               desc = "Commits" },
+	{ "<leader>gt", "<cmd>lua require('telescope.builtin').git_stash()<cr>",                 desc = "Stash" },
+	{ "<leader>gf", "<cmd>lua require('telescope.builtin').git_files()<cr>",                 desc = "Files" },
 
 	-- Help
-	h = {
-		name = "Help",
-		c = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
-		h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Help Tags" },
-		t = { ":Telescope<CR>", "Telescope" },
-		l = { ":Lazy<CR>", "Open Lazy" },
-		m = { "<cmd>lua require('telescope.builtin').man_pages()<CR>", "Man Pages" },
-	},
+	{ "<leader>h",  group = "Help" },
+	{ "<leader>hc", "<cmd>lua require('telescope.builtin').commands()<CR>",                  desc = "Commands" },
+	{ "<leader>hh", "<cmd>lua require('telescope.builtin').help_tags()<cr>",                 desc = "Help Tags" },
+	{ "<leader>ht", ":Telescope<CR>",                                                        desc = "Telescope" },
+	{ "<leader>hl", ":Lazy<CR>",                                                             desc = "Open Lazy" },
+	{ "<leader>hm", "<cmd>lua require('telescope.builtin').man_pages()<CR>",                 desc = "Man Pages" },
 
 	-- LSP
-	l = {
-		name = "LSP",
-		i = { ":LspInfo<cr>", "Connected Language Servers" },
-		A = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add workspace folder" },
-		R = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove workspace folder" },
-		l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List workspace folder" },
-		D = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type definition" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
-		e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Show line diagnostics" },
-		q = { "<cmd>lua vim.lsp.diagnostic.setloclist()<CR>", "Show loclist" },
-	},
+	{ "<leader>l",  group = "LSP" },
+	{ "<leader>li", ":LspInfo<cr>",                                                          desc = "Connected Language Servers" },
+	{ "<leader>lA", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",                       desc = "Add workspace folder", },
+	{ "<leader>lR", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",                    desc = "Remove workspace folder", },
+	{ "<leader>ll", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", desc = "List workspace folder", },
+	{ "<leader>lD", "<cmd>lua vim.lsp.buf.type_definition()<CR>",                            desc = "Type definition", },
+	{ "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>",                                     desc = "Rename", },
+	{ "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>",                                desc = "Code actions", },
+	{ "<leader>le", "<cmd>lua vim.diagnostic.open_float()<CR>",                              desc = "Show line diagnostics", },
+	{ "<leader>lq", "<cmd>lua vim.lsp.diagnostic.setloclist()<CR>",                          desc = "Show loclist", },
 
-	m = { mark.add_file, "Add Mark" },
+	{ "<leader>m",  function() mark.add_file() end,                                          desc = "Add Mark", },
 
 	-- NvimTree
-	n = { ":Neotree toggle<CR>", "Toggle Neo-Tree" },
+	{ "<leader>n",  ":Neotree toggle<CR>",                                                   desc = "Toggle Neo-Tree", },
 
 	-- Obsidian
-	o = {
-		name = "Obsidian",
-		n = { ":ObsidianNew<CR>", "Create new obsidian note" },
-		s = { ":ObsidianSearch<CR>", "Search Obsidian Notes" },
-		o = { ":ObsidianOpen<CR>", "Open in Obsidian" },
-		t = { ":ObsidianTOC<CR>", "Table of Contents" },
-
-	},
+	{ "<leader>o",  group = "Obsidian",                                                      icon = "" },
+	{ "<leader>on", ":ObsidianNew<CR>",                                                      desc = "Create new obsidian note", },
+	{ "<leader>os", ":ObsidianSearch<CR>",                                                   desc = "Search Obsidian Notes", },
+	{ "<leader>oo", ":ObsidianOpen<CR>",                                                     desc = "Open in Obsidian", },
+	{ "<leader>ot", ":ObsidianTOC<CR>",                                                      desc = "Table of Contents", },
 
 	-- -- Project Management
 	-- p = {
@@ -125,38 +99,45 @@ local nmaps = {
 	-- },
 
 	-- Quit
-	q = {
-		name = "Quit",
-		q = { ":q<cr>", "Quit" },
-		Q = { ":wq<cr>", "Save and Quit" },
-	},
+	{ "<leader>q",  group = "Quit" },
+	{ "<leader>qq", ":q<cr>",                                                                desc = "Quit", },
+	{ "<leader>qQ", ":wq<cr>",                                                               desc = "Save and Quit", },
 
 	-- Toggle
-	t = {
-		name = "Toggle",
-		t = { ":ToggleTerm<CR>", "Open Terminal" },
-		h = { toggleInlayHint, "Toggle Inlay Hint" },
+	{ "<leader>t",  group = "Toggle" },
+	{ "<leader>tt", ":ToggleTerm<CR>",                                                       desc = "Open Terminal", },
+	{
+		"<leader>th",
+		function()
+			if vim.lsp.inlay_hint then
+				vim.lsp.inlay_hint(0, nil)
+			end
+		end,
+		desc = "Toggle Inlay Hint",
 	},
 
 	---- Windows
-	w = {
-		name = "window",
-		o = { "<C-w>o", "Maximize pane" },
-		j = { ":wincmd j<CR>", "Go to botton pane" },
-		k = { ":wincmd k<CR>", "Go to upper pane" },
-		h = { ":wincmd h<CR>", "Go to left pane" },
-		l = { ":wincmd l<CR>", "Go to right pane" },
-		c = { ":close <CR>", "Close Window" },
-		s = { ":sp <CR>", "Split Horizontally" },
-		v = { ":vs <CR>", "Split Vertically" },
-	},
+	{ "<leader>w",  group = "Window" },
+	{ "<leader>wo", "<C-w>o",        desc = "Maximize pane", },
+	{ "<leader>wj", ":wincmd j<CR>", desc = "Go to botton pane", },
+	{ "<leader>wk", ":wincmd k<CR>", desc = "Go to upper pane", },
+	{ "<leader>wh", ":wincmd h<CR>", desc = "Go to left pane", },
+	{ "<leader>wl", ":wincmd l<CR>", desc = "Go to right pane", },
+	{ "<leader>wc", ":close <CR>",   desc = "Close Window", },
+	{ "<leader>ws", ":sp <CR>",      desc = "Split Horizontally", },
+	{ "<leader>wv", ":vs <CR>",      desc = "Split Vertically", },
 }
 
 local vmaps = {
-	d = {
-		name = "Debug",
-		e = { "<Cmd>lua require('dapui').eval()<CR>", "Evaluate Expression" },
-	},
+
+	{
+		mode = { "v" },
+		{
+			"<leader>de",
+			"<Cmd>lua require('dapui').eval()<CR>",
+			desc = "Evaluate Expression"
+		},
+	}
 }
 
 -- legendary.setup({
@@ -166,5 +147,5 @@ local vmaps = {
 -- 	},
 -- })
 
-wk.register(nmaps, wopts)
-wk.register(vmaps, vopts)
+wk.add(nmaps)
+wk.add(vmaps)

@@ -26,8 +26,6 @@ local plugins = {
 	},
 
 	-- Keybindings
-	-- WhichKey: Defining and Showing Hotkeys
-	{ "folke/which-key.nvim" },
 
 	-- Hydra: For epic and quick vim usage
 	{
