@@ -1,41 +1,4 @@
 local plugins = {
-	-- Help with Nvim Lua
-	{
-		"folke/neodev.nvim",
-	},
-
-	-- Debugger and Debugging
-	{
-		"mfussenegger/nvim-dap",
-		init = function()
-			require("dev.debugger")
-		end,
-	},
-	{
-		"nvim-neotest/nvim-nio"
-	},
-	{
-		"rcarriga/nvim-dap-ui"
-	},
-	{
-		"mfussenegger/nvim-dap-python"
-	},
-
-	{
-		"theHamsta/nvim-dap-virtual-text"
-	},
-
-	-- Keybindings
-
-	-- Hydra: For epic and quick vim usage
-	{
-		"anuvyklack/hydra.nvim",
-		dependencies = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-	},
-
-	-- Command Pallette
-	{ "mrjones2014/legendary.nvim" },
-
 	-- Dispatch: To Quickly Build
 	-- ({
 	--   {
@@ -62,8 +25,6 @@ local plugins = {
 	--   event = "BufWinEnter",
 	-- })
 
-	-- Checking the Starup Time for Neovim
-	{ "tweekmonster/startuptime.vim" },
 
 	-- For Markdown Previews
 	-- {
@@ -75,20 +36,6 @@ local plugins = {
 
 	-- Devicons
 	{ "kyazdani42/nvim-web-devicons" },
-
-
-	-- Oil.Nvim
-	{
-		"stevearc/oil.nvim",
-		init = function() require('dev.oil-config') end,
-	},
-
-	-- Snippets
-	"honza/vim-snippets",
-	-- "sirver/ultisnips",
-	"cstrap/flask-snippets",
-	"L3MON4D3/LuaSnip",
-	"rafamadriz/friendly-snippets",
 
 	-- CSS Color Preview
 	{
@@ -225,26 +172,12 @@ local plugins = {
 	-- 	event = "BufRead",
 	-- })
 
-	-- Code Structure Navigation
-	{
-		"stevearc/aerial.nvim",
-		config = function() require('dev.aerial-config') end,
-		-- event = "BufWinEnter",
-	},
-
-
 
 	-- {
 	--   "simnalamburt/vim-mundo",
 	--   event = "BufWinEnter",
 	-- },
 
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		config = function()
-			require('appearance.rainbow')
-		end,
-	},
 }
 
 return plugins
