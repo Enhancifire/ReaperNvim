@@ -1,6 +1,9 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
+	opts = {
+		transparent_background = true,
+	},
 	config = function()
 		require("catppuccin").setup({
 			dim_inactive = {

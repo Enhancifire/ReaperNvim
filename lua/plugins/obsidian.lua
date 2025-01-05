@@ -9,7 +9,7 @@ return {
 		workspaces = {
 			{
 				name = "personal",
-				path = "D:/Notes/Notes",
+				path = "$HOME/Notes",
 			}
 		},
 		notes_subdir = "/",
