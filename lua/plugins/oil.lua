@@ -7,9 +7,9 @@ return {
 		oil.setup({
 			columns = {
 				"icon",
-				"size",
+				-- "size",
 			},
-			default_file_explorer = false,
+			default_file_explorer = true,
 		})
 	end,
 }

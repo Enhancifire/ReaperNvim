@@ -24,7 +24,7 @@ return {
 		},
 		daily_notes = {
 			folder = "07 - Daily",
-			date_format = "%Y%m%d",
+			date_format = "%Y-%m-%d",
 			alias_format = "%Y-%m-%d",
 			default_tags = { "daily" },
 			template = "99 - Meta/00 - Templates/(TEMPLATE) Daily.md"
@@ -54,7 +54,8 @@ return {
 			img_folder = "99 - Meta/01 - Attachments"
 		},
 		ui = {
-			enable = true,
+			-- enable = true,
+			enable = false,
 		},
 	},
 }
